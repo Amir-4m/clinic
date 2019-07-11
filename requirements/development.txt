@@ -1,0 +1,15 @@
+-r base.txt
+
+# Documentation
+sphinx
+sphinx-rtd-theme
+
+# Test
+coverage
+mock
+
+# Code Quality
+flake8
+
+pygraphviz
+django-extensions
