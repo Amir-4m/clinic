@@ -1,0 +1,55 @@
+/* GENERAL */
+html, body {
+    font-family: Tahoma, sans-serif;
+    font-size: 14px;
+    direction: rtl;
+    text-align: right;
+}
+
+.font-custom-missing body {
+    font-family: Tahoma, sans-serif;
+    font-size: 10px;
+}
+
+/* HEADER */
+
+/* FOOTER */
+
+/* MATERIAL DESIGN LITE */
+.mdl-card__menu {
+    left: auto;
+    right: 16px;
+}
+
+.mdl-button--fab .material-icons {
+    left: 50%;
+    -webkit-transform: translate(-12px, -12px);
+    transform: translate(-12px, -12px);
+}
+
+.mdl-button--icon {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.mdl-button--icon .material-icons {
+    left: 50%;
+    -webkit-transform: translate(-12px, -12px);
+    transform: translate(-12px, -12px);
+}
+
+.mdl-button--icon.mdl-button--mini-icon .material-icons {
+    top: 0;
+    left: 0;
+    right: auto;
+}
+
+.mdl-button__ripple-container {
+    left: 0;
+    right: auto;
+}
+
+.mdl-mini-footer--link-list li,
+.mdl-mini-footer__link-list li {
+    margin-right: 16px;
+}

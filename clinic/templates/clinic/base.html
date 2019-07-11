@@ -1,0 +1,102 @@
+{% load i18n staticfiles sekizai_tags compress seo_tags site_tags %}
+<!doctype html>
+<html{% if setting %} lang="{{ setting.language }}"{% endif %}>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    {% seo_meta %}
+    {% favicon site %}
+    {% compress css inline %}
+        {%  block css %}
+            <link rel="stylesheet" href="{{ STATIC_URL }}site/css/custom.css">
+            {% if LANGUAGE_BIDI %}<link rel="stylesheet" href="{{ STATIC_URL }}site/css/custom.rtl.css">{% endif %}
+            <link rel="stylesheet" href="{{ STATIC_URL }}social/css/social.css">
+
+            {% if LANGUAGE_BIDI %}
+            <link rel="stylesheet" href="{{ STATIC_URL }}iranyekan/{{ IRAN_YEKAN_LICENSE|default:'3.0' }}/css/iranyekan.css">
+            {% else %}
+            <link rel="stylesheet" href="{{ STATIC_URL }}site/css/roboto.css">
+            {% endif %}
+            <link rel="stylesheet" href="{{ STATIC_URL }}site/css/styles.css">
+            {% if LANGUAGE_BIDI %}<link rel="stylesheet" href="{{ STATIC_URL }}site/css/styles.rtl.css">{% endif %}
+        {% endblock %}
+    {% endcompress %}
+
+    <!--[if lt IE 9]><script src="/js/html5shiv.js"></script><![endif]-->
+    {% block extra_head %}{% endblock %}
+    {% if setting and setting.gtm_id %}
+    {% compress js inline %}
+    <!-- Google Tag Manager -->
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
+            var f = d.getElementsByTagName(s)[0], j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', '{{ setting.gtm_id }}');
+    </script>
+    <!-- End Google Tag Manager -->
+    {% endcompress %}
+    {% endif %}
+    {% if setting and setting.ga_id %}
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ setting.ga_id }}"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    {% compress js inline %}
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', '{{ setting.ga_id }}');
+    </script>
+    {% endcompress %}
+    {% endif %}
+</head>
+<body>
+    {% if setting and setting.gtm_id %}
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id={{ setting.gtm_id }}" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    {% endif %}
+    {% block body %}{% endblock %}
+    <noscript id="deferred-styles">
+        {% block external_css %}{% endblock %}
+        {% compress css %}
+        {% block stylesheets %}
+        {% endblock %}
+        {% block extracss %}{% endblock %}
+        {% endcompress %}
+        {% render_block "css" postprocessor "compressor.contrib.sekizai.compress" %}
+    </noscript>
+    {% compress js inline %}
+    <script>
+        const loadDeferredStyles = function () {
+            const addStylesNode = document.getElementById("deferred-styles");
+            const replacement = document.createElement("div");
+            replacement.innerHTML = addStylesNode.textContent;
+            document.body.appendChild(replacement);
+            addStylesNode.parentElement.removeChild(addStylesNode);
+        };
+        const raf = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
+            window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+        if (raf) raf(function () {
+            window.setTimeout(loadDeferredStyles, 0);
+        });
+        else window.addEventListener('load', loadDeferredStyles);
+    </script>
+    {% endcompress %}
+    {% block external_js %}{% endblock %}
+    {% compress js %}
+    {% block javascripts %}
+    <script src="{{ STATIC_URL }}lazy/js/images.js"></script>
+    <script src="{{ STATIC_URL }}site/js/script.js"></script>
+    {% endblock %}
+    {% block extrajs %}{% endblock %}
+    {% endcompress %}
+    {% render_block "js" %}
+</body>
+</html>

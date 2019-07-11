@@ -1,0 +1,15 @@
+html, body, p, h1, h2, h3, h4, h5, h6, blockquote, .mdl-button, .mdl-list__item {
+    font-family: iranyekan, Tahoma, sans-serif;
+}
+
+html, body, p, ul, ol {
+    font-size: 15px;
+}
+
+.material-icons {
+    direction: rtl;
+}
+
+.mdl-button {
+    font-size: 16px;
+}
