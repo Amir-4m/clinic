@@ -13,6 +13,7 @@ id_rsa.pub
 
 /.idea/
 /.vagrant/
+/src/
 /public/
 build/
 /dist/
