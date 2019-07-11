@@ -49,7 +49,7 @@ append_to_file "workon clinic" ~/.bashrc
 # Create project folder
 mkdir -p /home/vagrant/projects
 
-cp /vagrant/id_rsa /home/vagrant/.ssh/id _rsa
+cp /vagrant/id_rsa /home/vagrant/.ssh/id_rsa
 chmod 600 /home/vagrant/.ssh/id_rsa
 
 append_to_file "cd /vagrant" ~/.bashrc
