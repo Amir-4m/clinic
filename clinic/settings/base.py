@@ -69,6 +69,7 @@ TEST = get_env_var('TEST', 'False') == 'True'
 
 ADMINS = (
     ('Saeed Salehian', 'saeed@upkook.com'),
+    ('Mohsen Javidpanah', 'moshen212@gmail.com'),
 )
 
 MANAGERS = ADMINS
@@ -325,6 +326,10 @@ INSTALLED_APPS = (
     'django_contrib.seo',
 
     # Project Apps
+    'clinic.apps.home',
+    'clinic.apps.about_us',
+    'clinic.apps.contact',
+    'clinic.apps.services',
 )
 
 if DEBUG:  # pragma: no cover

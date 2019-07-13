@@ -1,10 +1,11 @@
-{% extends is_amp|yesno:"ice_blog/amp/base.html,ice_blog/base.html" %}
+{% extends is_amp|yesno:"clinic/amp/base.html,clinic/base.html" %}
+{# % extends is_amp|yesno:"ice_blog/amp/base.html,ice_blog/base.html" % #}
 
 {% block body %}
 <div id="outer-wrapper">
   {% include 'clinic/includes/header.html' %}
   <div class="container row" id="main-wrapper">
-    <div class="content" id="content-wrapper">{% block content %}{% endblock %}</div>
+    <div class="content" id="content-wrapper">{% block content %}  {% endblock %}</div>
   </div>
   {% include 'clinic/includes/footer.html' %}
 </div>

@@ -1,0 +1,58 @@
+{% load i18n staticfiles %}
+<header class="site-header{% if extend_header %} wide{% endif %}">
+	<div class="nav-bar mdl-layout">
+		<div class="mdl-layout__content">
+			<div class="mdl-grid">
+				<div class="mdl-cell mdl-cell--1-col mdl-cell--hide-tablet"></div>
+				<div class="header-layout mdl-cell mdl-cell--10-col mdl-grid">
+					<div class="site-branding d-flex mdl-cell mdl-cell--2-col">
+						<a class="d-block" href="index.html" rel="home">
+							<img{% if is_amp %}-amp{% endif %} class="Xd-block" src="{{ STATIC_URL }}site/images/theme/logo.png" alt="logo">
+						</a>
+					</div>
+					<nav class="site-navigation mdl-cell mdl-cell--10-col-desktop mdl-cell--3-col-tablet mdl-cell--5-col-phone">
+						<ul class="d-flex">
+							<li class="mdl-layout-spacer"></li>
+							<li class="current-menu-item"><a href="index.html">Home</a></li>
+							<li><a href="about.html">About us</a></li>
+							<li><a href="services.html">Services</a></li>
+							<li><a href="news.html">News</a></li>
+							<li><a href="contact.html">Contact</a></li>
+							<li class="iconic-item">
+								<div class="call-btn mdl-button mdl-button--accent mdl-cell mdl-cell--middle button gradient-bg mt-3 mt-md-0">
+									<a class="d-flex" href="#">
+										<img{% if is_amp %}-amp{% endif %} src="{{ STATIC_URL }}site/images/theme/emergency-call.png"> +34 586 778 8892
+									</a>
+								</div>
+							</li>
+						</ul>
+					</nav>
+					<div class="hamburger-menu mdl-menu mdl-menu--top-right mdl-cell mdl-cell--middle mdl-cell--hide-desktop mdl-cell--1-col">
+						<span></span>
+						<span></span>
+						<span></span>
+						<span></span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	{% if extend_header %}
+	<div class="mdl-layout__content mdl-cell">
+		<div class="mdl-grid">
+			<div class="mdl-cell mdl-cell--4-col"></div>
+				<div class="mdl-cell mdl-cell--8-col">
+					<h1>Services</h1>
+					<div class="breadcrumbs">
+						<ul class="d-flex">
+							<li><a href="#">Home</a></li>
+							<li>Services</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<img{% if is_amp %}-amp{% endif %} class="header-img" src="{{ STATIC_URL }}site/images/theme/service-bg.png" alt="">
+	</div>
+	{% endif %}
+</header>
