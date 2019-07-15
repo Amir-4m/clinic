@@ -9,6 +9,11 @@ from .converters import AMPConverter
 register_converter(AMPConverter, 'amp')
 
 urlpatterns += [
-    path('robots.txt', TemplateView.as_view(template_name="robots.txt", content_type="text/plain"), name='robots'),
+    path(r'', include('clinic.apps.home.urls')),
+    path(
+        'robots.txt',
+        TemplateView.as_view(template_name="robots.txt", content_type="text/plain"),
+        name='robots'
+    ),
     path('amp/', include('django_contrib.amp.urls', namespace='amp')),
 ]

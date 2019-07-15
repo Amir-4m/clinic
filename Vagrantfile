@@ -70,4 +70,6 @@ Vagrant.configure("2") do |config|
 
   # Enable provisioning with a shell script.
   config.vm.provision :shell, path: "bootstrap.sh", privileged: false
+
+  # config.ssh.private_key_path = ["./id_rsa"]
 end

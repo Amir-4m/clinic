@@ -11,4 +11,4 @@ __all__ = ['celery_app']
 __author__ = 'Upkook'
 __version__ = '1.0.0'
 
-DEFAULT_SETTINGS_MODULE = 'clinic.settings.production'
+DEFAULT_SETTINGS_MODULE = 'clinic.settings.web'
