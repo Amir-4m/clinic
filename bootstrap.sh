@@ -37,6 +37,7 @@ sh provision.sh
 sudo python -m pip install --upgrade pip
 sudo pip install --upgrade setuptools wheel virtualenv virtualenvwrapper
 
+ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
 append_to_file "export WORKON_HOME=$HOME/.virtualenvs" $HOME/.bashrc
 append_to_file "export PROJECT_HOME=/vagrant" $HOME/.bashrc
 append_to_file "source /usr/local/bin/virtualenvwrapper.sh" $HOME/.bashrc
