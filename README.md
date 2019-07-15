@@ -1,5 +1,8 @@
 # Clinic Website
 
+[![Run Status](https://api.shippable.com/projects/5d2752732900de00064426ac/badge?branch=develop)]()
+[![Coverage Badge](https://api.shippable.com/projects/5d2752732900de00064426ac/coverageBadge?branch=develop)]()
+
 ## Features
 
  - Home Page
