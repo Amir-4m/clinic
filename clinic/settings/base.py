@@ -326,6 +326,8 @@ INSTALLED_APPS = (
     'django_contrib.seo',
 
     # Project Apps
+    'clinic.apps.carousel',
+
     'clinic.apps.home',
     'clinic.apps.about_us',
     'clinic.apps.contact',

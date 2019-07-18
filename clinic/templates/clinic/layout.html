@@ -1,5 +1,17 @@
 {% extends is_amp|yesno:"clinic/amp/base.html,clinic/base.html" %}
-{# % extends is_amp|yesno:"ice_blog/amp/base.html,ice_blog/base.html" % #}
+{% load carousel %}
+
+{% if load_carousel or header_carousel %}
+	{% block extra_css %}
+    	{% carousel_css_tags %}
+	{% endblock %}
+
+	{% block extra_js %}
+	    {% carousel_js_tags %}
+	{% endblock %}
+{% endif %}
+
+
 
 {% block body %}
 <div id="outer-wrapper">

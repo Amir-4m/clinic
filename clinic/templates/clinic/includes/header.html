@@ -1,5 +1,5 @@
-{% load i18n staticfiles %}
-<header class="site-header{% if extend_header %} wide{% endif %}">
+{% load i18n staticfiles carousel %}
+<header class="site-header{% if extend_header %} wide{% endif %}{% if header_carousel %} carousel{% endif %}">
 	<div class="nav-bar mdl-layout">
 		<div class="mdl-layout__content">
 			<div class="mdl-grid">
@@ -37,7 +37,10 @@
 			</div>
 		</div>
 	</div>
-	{% if extend_header %}
+	{% if extend_header or header_carousel %}
+	{% if header_carousel %}
+		{% carousel header_carousel %}
+	{% else %}
 	<div class="mdl-layout__content mdl-cell">
 		<div class="mdl-grid">
 			<div class="mdl-cell mdl-cell--4-col"></div>
@@ -54,5 +57,6 @@
 		</div>
 		<img{% if is_amp %}-amp{% endif %} class="header-img" src="{{ STATIC_URL }}site/images/theme/service-bg.png" alt="">
 	</div>
+	{% endif %}
 	{% endif %}
 </header>

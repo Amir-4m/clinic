@@ -1005,6 +1005,46 @@ header .header-layout .hamburger-menu {
 	right: 10px;
 }
 
+.h-100 {
+	height: 100% !important;
+}
+
+.w-100 {
+	width: 100% !important;
+}
+
+.position-absolute {
+	position: absolute !important;
+}
+
+.container {
+    max-width: 1140px;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.flex-column {
+    -ms-flex-direction: column !important;
+    flex-direction: column !important;
+}
+
+.entry-content {
+	color: #404040;
+}
+
+.flex-wrap {
+    -ms-flex-wrap: wrap !important;
+    flex-wrap: wrap !important;
+}
+
+.flex-md-column {
+    -ms-flex-direction: column !important;
+    flex-direction: column !important;
+}
+
 .site-header {
     position: relative;
     padding: 140px 0 0;
@@ -1012,7 +1052,11 @@ header .header-layout .hamburger-menu {
 }
 
 .site-header.wide {
-    padding: 220px 0 140px;
+    padding: 220px 0 20px;
+}
+
+.site-header.wide.carousel {
+    padding: 0;
 }
 
 .site-header h1 {

@@ -19,11 +19,12 @@
             {% endif %}
             <link rel="stylesheet" href="{{ STATIC_URL }}site/css/styles.css">
             {% if LANGUAGE_BIDI %}<link rel="stylesheet" href="{{ STATIC_URL }}site/css/styles.rtl.css">{% endif %}
-            <link rel="stylesheet" href="{{ STATIC_URL }}site/css/swiper.min.css">
-            <!-- <link rel="stylesheet" href="{{ STATIC_URL }}site/css/bootstrap.min.css"> -->
+
             <link rel="stylesheet" href="{{ STATIC_URL }}site/css/style.css">
         {% endblock %}
     {% endcompress %}
+
+    {% block extra_css %}{% endblock %}
 
     <!--[if lt IE 9]><script src="/js/html5shiv.js"></script><![endif]-->
     {% block extra_head %}{% endblock %}
@@ -98,7 +99,7 @@
     <script src="{{ STATIC_URL }}lazy/js/images.js"></script>
     <script src="{{ STATIC_URL }}site/js/script.js"></script>
     {% endblock %}
-    {% block extrajs %}{% endblock %}
+    {% block extra_js %}{% endblock %}
     {% endcompress %}
     {% render_block "js" %}
 </body>

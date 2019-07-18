@@ -1,0 +1,37 @@
+{% load i18n %}
+<div class="swiper-container hero-slider">
+	<div class="swiper-wrapper">
+		{% for slide in carousel.slides.all %}
+		<div class="swiper-slide hero-content-wrap{% if forloop.counter == 1 %} swiper-slide-active{%endif%}{% if forloop.counter == 2 %} swiper-slide-next{%endif%}" style="background-image: url('{{ slide.image.url }}')">
+			<div class="hero-content-overlay position-absolute w-100 h-100">
+				<div class="container h-100">
+					<div class="mdl-grid Xrow h-100">
+						<div class="mdl-cell mdl-cell--12-col mdl-cell--6-col-desktop mdl-cell--middle Xcol-12 Xcol-lg-6 d-flex flex-column justify-content-center align-items-start">
+							<header class="entry-header">
+								<h1>{{ slide.title|safe }}</h1>
+							</header>
+							<div class="entry-content mt-4">
+								{{ slide.content|safe }}
+							</div>
+							{% if slide.details_link %}
+							<footer class="entry-footer d-flex flex-wrap align-items-center mt-4">
+								<a href="{{ slide.details_link }}" class="button gradient-bg">{% trans "Read More" %}</a>
+							</footer>
+							{% endif %}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+	<div class="pagination-wrap position-absolute w-100">
+		<div class="swiper-pagination d-flex flex-row flex-md-column swiper-pagination-clickable swiper-pagination-bullets">
+			{% for slide in carousel.slides.all %}
+			<span data-slide="{{ forloop.counter0 }}" class="swiper-pagination-bullet{% if forloop.counter == 1 %} swiper-pagination-bullet-active{% endif %}">
+			{{ forloop.counter }}
+			</span>
+			{% endfor %}
+		</div>
+	</div>
+</div>
