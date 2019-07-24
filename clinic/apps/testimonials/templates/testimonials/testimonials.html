@@ -1,0 +1,76 @@
+<section class="testimonial-section" id="id_testimonials">
+	<div class="container">
+		<div class="mdl-grid">
+			<div class="mdl-cell mdl-cell--12-col">
+				<p class="bold-title">Pacient’s Testimonials</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="testimonial-slider">
+		<div class="container">
+			<div class="mdl-grid">
+				<div class="mdl-cell mdl-cell--9-col mdl-cell--9-col-tablet">
+					<div class="testimonial-bg-shape">
+						<div class="swiper-container testimonial-slider-wrap swiper-container-fade swiper-container-horizontal swiper-container-wp8-horizontal">
+							<div class="swiper-wrapper">
+							{% for testimonial in testimonials %}
+								<div class="swiper-slide swiper-slide-duplicate {% if forloop.counter == 1 %}swiper-slide-active{% else %}swiper-slide-hide{% endif %}">
+									<div class="entry-content">
+										<p>{{ testimonial.text }}</p>
+									</div>
+									<div class="entry-footer">
+										<figure class="user-avatar">
+											<img src="{{ testimonial.user_avatar.url }}" alt="">
+										</figure>
+										<h3 class="testimonial-user">{{ testimonial.user_full_name}}
+											<span>{{ testimonial.location }}</span>
+										</h3>
+									</div>
+							</div>
+							{% endfor %}
+							{% comment %}<div class="swiper-slide swiper-slide-active">
+								<div class="entry-content">
+									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien. Suspendisse cursus faucibus finibus. Curabitur ut augue finibus, luctus tortor at, ornare erat. Nulla facilisi. Sed est risus, laoreet et quam non, viverra accumsan leo.</p>
+								</div>
+								<div class="entry-footer">
+									<figure class="user-avatar">
+										<img src="{{ STATIC_URL }}/site/images/theme/user-1.jpg" alt="">
+									</figure>
+									<h3 class="testimonial-user">Russell Stephens <span>University in UK</span></h3>
+								</div>
+							</div>
+							<div class="swiper-slide swiper-slide-hide">
+								<div class="entry-content">
+									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien. Suspendisse cursus faucibus finibus. Curabitur ut augue finibus, luctus tortor at, ornare erat. Nulla facilisi. Sed est risus, laoreet et quam non, viverra accumsan leo.</p>
+								</div>
+								<div class="entry-footer">
+									<figure class="user-avatar">
+										<img src="{{ STATIC_URL }}/site/images/theme/user-2.jpg" alt="">
+									</figure>
+									<h3 class="testimonial-user">Russell Stephens <span>University in UK</span></h3>
+								</div>
+							</div>{% endcomment %}
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="swiper-pagination-wrap">
+				<div class="container">
+					<div class="mdl-grid">
+						<div class="mdl-cell mdl-cell--9-col d-flex">
+							<div class="swiper-pagination position-relative d-flex auto-h-margin justify-content-center align-items-center swiper-pagination-clickable swiper-pagination-bullets">
+								{% for testimonial in testimonials %}
+								<span onclick="showTestimonial('id_testimonials', {{ forloop.counter0 }})" class="swiper-pagination-bullet{% if forloop.counter == 1 %} swiper-pagination-bullet-active{% endif %}"></span>
+								{% endfor %}
+								{% comment %}<span class="swiper-pagination-bullet"></span>
+								<span class="swiper-pagination-bullet"></span>
+								<span class="swiper-pagination-bullet"></span>{% endcomment %}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

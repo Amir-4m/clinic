@@ -1,0 +1,83 @@
+{% extends "clinic/layout.html" %}
+{% load i18n staticfiles %}
+
+{% block extra_head %}
+{{ block.super }}
+<link rel="amphtml" href="contact/amp/">
+{% endblock %}
+
+
+{% block content %}
+{% comment %} Boxes {% endcomment %}
+<div class="homepage-boxes">
+	<div class="container">
+		<div class="mdl-grid">
+			<div class="mdl-cell mdl-cell--6-col-desktop mdl-cell--12-col-tablet">
+				<div class="opening-hours">
+					<h2 class="d-flex align-items-center">{% trans "Opening Hours" %}</h2>
+					<ul class="p-0 m-0">
+						{% if config.MONDAY_WORKING_TIME %}<li>{% trans "Monday" %} <span>{{ config.MONDAY_WORKING_TIME }}</span></li>{% endif %}
+						{% if config.TUESDAY_WORKING_TIME %}<li>{% trans "Tuesday" %} <span>{{ config.TUESDAY_WORKING_TIME }}</span></li>{% endif %}
+						{% if config.WENDSDAY_WORKING_TIME %}<li>{% trans "Wendsday" %} <span>{{ config.WENDSDAY_WORKING_TIME }}</span></li>{% endif %}
+						{% if config.THURSDAY_WORKING_TIME %}<li>{% trans "Thursday" %} <span>{{ config.THURSDAY_WORKING_TIME }}</span></li>{% endif %}
+						{% if config.FRIDAY_WORKING_TIME %}<li>{% trans "Friday" %} <span>{{ config.FRIDAY_WORKING_TIME }}</span></li>{% endif %}
+						{% if config.SATURDAY_WORKING_TIME %}<li>{% trans "Saturday" %} <span>{{ config.SATURDAY_WORKING_TIME }}</span></li>{% endif %}
+						{% if config.SUNDAY_WORKING_TIME %}<li>{% trans "Sunday" %} <span>{{ config.SUNDAY_WORKING_TIME }}</span></li>{% endif %}
+					</ul>
+				</div>
+			</div>
+			<div class="mdl-cell mdl-cell--6-col mdl-cell--12-col-tablet mt-5 mt-md-0">
+				<div class="emergency-box h-100">
+					<h2 class="d-flex align-items-center">{% trans "Emergency" %}</h2>
+					<div class="call-btn button gradient-bg">
+						<a class="d-flex justify-content-center align-items-center" href="#">
+							<img src="{{ STATIC_URL }}site/images/theme/emergency-call.png"> {{ config.EMERGENCY_PHONE }}
+						</a>
+					</div>
+					<p>{{ config.EMERGENCY_TEXT|safe }}</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% comment %} Contact Form {% endcomment %}
+<div class="contact-form">
+	<div class="container">
+		<div class="mdl-grid">
+			<div class="mdl-cell mdl-cell--12-col">
+				<h2>Get in Touch</h2>
+			</div>
+			<div class="mdl-cell mdl-cell--4-col mdl-cell--12-col-phone col-12  col-md-4">
+				<input type="text" placeholder="Name">
+			</div>
+			<div class="mdl-cell mdl-cell--4-col mdl-cell--12-col-phone">
+				<input type="email" placeholder="E-mail">
+			</div>
+			<div class="mdl-cell mdl-cell--4-col mdl-cell--12-col-phone">
+				<input type="text" placeholder="Subject">
+			</div>
+			<div class="mdl-cell mdl-cell--12-col">
+				<textarea name="name" rows="12" cols="80" placeholder="Message"></textarea>
+			</div>
+			<div class="mdl-cell mdl-cell--12-col">
+				<input type="submit" name="" value="Send Message" class="button gradient-bg">
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+{% comment %} Contact Form {% endcomment %}
+<div class="container">
+	<div class="mdl-grid">
+		<div class="mdl-cell mdl-cell--12-col">
+			<div class="contact-page-map">
+				<iframe id="gmap_canvas" src="https://maps.google.com/maps?q=university%20of%20san%20francisco&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=&amp;output=embed" scrolling="no" marginheight="0" marginwidth="0" frameborder="0"></iframe>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

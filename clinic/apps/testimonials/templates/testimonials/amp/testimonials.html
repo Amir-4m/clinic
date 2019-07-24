@@ -1,0 +1,55 @@
+<section class="testimonial-section" id="id_testimonials">
+	<div class="container">
+		<div class="mdl-grid">
+			<div class="mdl-cell mdl-cell--12-col">
+				<p class="bold-title">Pacient’s Testimonials</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="testimonial-slider">
+		<div class="container">
+			<div class="mdl-grid">
+				<div class="mdl-cell mdl-cell--9-col mdl-cell--9-col-tablet">
+					<div class="testimonial-bg-shape">
+						<div class="swiper-container amp-item testimonial-slider-wrap swiper-container-fade swiper-container-horizontal swiper-container-wp8-horizontal">
+							<div class="swiper-wrapper">
+							<amp-carousel width="auto" controls layout="flex-item" type="slides">
+							{% for testimonial in testimonials %}
+								<div class="swiper-slide swiper-slide-duplicate {% if forloop.counter == 1 %}swiper-slide-active{% else %}swiper-slide-hide{% endif %}">
+									<div class="entry-content">
+										<p>{{ testimonial.text }}</p>
+									</div>
+									<div class="entry-footer">
+										<figure class="user-avatar">
+											<amp-img src="{{ testimonial.user_avatar.url }}" width="24" height="24" layout="responsive" alt="">
+										</figure>
+										<h3 class="testimonial-user">{{ testimonial.user_full_name}}
+											<span>{{ testimonial.location }}</span>
+										</h3>
+									</div>
+								</div>
+							{% endfor %}
+							</amp-carousel>
+						</div>
+					</div>
+				</div>
+			</div>
+			{% comment %}
+			<div class="swiper-pagination-wrap">
+				<div class="container">
+					<div class="mdl-grid">
+						<div class="mdl-cell mdl-cell--9-col d-flex">
+							<div class="swiper-pagination position-relative d-flex auto-h-margin justify-content-center align-items-center swiper-pagination-clickable swiper-pagination-bullets">
+								{% for testimonial in testimonials %}
+								<span onclick="showTestimonial('id_testimonials', {{ forloop.counter0 }})" class="swiper-pagination-bullet{% if forloop.counter == 1 %} swiper-pagination-bullet-active{% endif %}"></span>
+								{% endfor %}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			{% endcomment %}
+		</div>
+	</div>
+</section>

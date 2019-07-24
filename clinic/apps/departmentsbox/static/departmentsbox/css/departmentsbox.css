@@ -1,0 +1,95 @@
+.our-departments {
+    padding: 100px 0;
+    background-size: cover
+}
+
+.our-departments-wrap {
+    padding: 60px 80px 80px;
+    background: -moz-linear-gradient(180deg, rgba(50, 200, 250, 1) 0%, rgba(88, 125, 228, 1) 100%);
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba(50, 200, 250, 1)), color-stop(100%, rgba(188, 125, 228, 1)));
+    background: -webkit-linear-gradient(180deg, rgba(50, 200, 250, 1) 0%, rgba(88, 125, 228, 1) 100%);
+    background: -o-linear-gradient(180deg, rgba(50, 200, 250, 1) 0%, rgba(88, 125, 228, 1) 100%);
+    background: -ms-linear-gradient(180deg, rgba(50, 200, 250, 1) 0%, rgba(88, 125, 228, 1) 100%);
+    background: linear-gradient(270deg, rgba(50, 200, 250, 1) 0%, rgba(88, 125, 228, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#18a3eb', endColorstr='#18a3eb', GradientType=1)
+}
+
+@media screen and (min-width: 1281px) {
+}
+
+@media screen and (min-width: 736px){
+    .our-departments .our-departments-wrap > h2 {
+        font-size: 48px;
+    }
+}
+
+@media screen and (max-width:768px) {
+    .our-departments .our-departments-wrap {
+        padding-right: 30px;
+        padding-left: 30px
+    }
+
+    .our-departments .our-departments-wrap > h2 {
+        font-size: 2rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    
+}
+
+.our-departments-wrap h2 {
+    margin-bottom: 80px;
+    
+    font-weight: 600;
+    text-align: center;
+    color: #fff;
+}
+
+.our-departments-cont {
+    margin-bottom: 64px;
+}
+
+.our-departments-cont .entry-header {
+    min-height: 48px;
+}
+
+.our-departments-cont .entry-header img {
+    margin-right: 8px;
+}
+
+.our-departments.amp-item .our-departments-wrap {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.our-departments-cont .entry-header.amp-item img {
+    margin-right: 0;
+}
+
+.our-departments-cont .entry-header.amp-item h3 {
+    margin: 0 0 0 8px;
+}
+
+.our-departments-cont h3 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 700;
+    color: #fff
+}
+
+.our-departments-cont .entry-content {
+    margin-top: 16px
+}
+
+.our-departments-cont .entry-content p {
+    font-size: 14px;
+    color: #fff
+}
+
+.our-departments-cont .entry-footer a {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #fff
+}

@@ -165,6 +165,7 @@ TEMPLATES = [
             'context_processors': (
                 'django.template.context_processors.request',
                 'django.template.context_processors.csrf',
+                'django_contrib.amp.context_processors.amp',
             ),
             # List of callables that know how to import templates from
             # various sources.
@@ -318,6 +319,9 @@ INSTALLED_APPS = (
     'django_contrib.auth',
 
     # External Apps
+    # To Persist Dynamic Settings
+    'constance',
+
     # To configure Celery tasks from admin panel
     'django_celery_beat',
     'django_cleanup',
@@ -325,7 +329,12 @@ INSTALLED_APPS = (
     'django_contrib.sites',
     'django_contrib.seo',
 
-    # Project Apps
+    # Widget Apps
+    'clinic.apps.carousel',
+    'clinic.apps.departmentsbox',
+    'clinic.apps.testimonials',
+
+    # Page Apps
     'clinic.apps.home',
     'clinic.apps.about_us',
     'clinic.apps.contact',
@@ -418,3 +427,41 @@ EMAIL_PORT = get_env_var('EMAIL_PORT', 587)
 
 # Whether to use a TLS (secure) connection when talking to the SMTP server.
 EMAIL_USE_TLS = get_env_var('EMAIL_USE_TLS', 'True') == 'True'
+
+CONSTANCE_ADDITIONAL_FIELDS = {
+    'image_field': ['django.forms.ImageField', {}]
+}
+
+CONSTANCE_CONFIG = {
+    'LOGO': ('logo.png', 'Clinic Logo', 'image_field'),
+    'PHONE': ('+345867788892', 'Enter Clinic Phone Number'),
+    'EMERGENCY_PHONE': ('+345867788892', 'Enter Clinic Emergency Phone Number'),
+    'EMERGENCY_TEXT': (
+        'Lorem ipsum dolor sit amet, cons ectetur adipiscing elit. '
+        'Donec males uada lorem maximus mauris sceler isque, at rutrum nulla.',
+
+        'Enter Clinic Emergency Box Text'
+    ),
+    'EMAIL': ('yourmail@gmail.com', 'Enter Clinic Email'),
+    'ADDRESS': ('Mitlton Str. 26-27 London UK', 'Enter Clinic Address'),
+    'MONDAY_WORKING_TIME': ('9:30 - 15:30', 'If be empty not show'),
+    'TUESDAY_WORKING_TIME': ('', 'If be empty not show'),
+    'WENDSDAY_WORKING_TIME': ('', 'If be empty not show'),
+    'Thursday_WORKING_TIME': ('9:30 - 15:30', 'If be empty not show'),
+    'FRIDAY_WORKING_TIME': ('8:00 - 18:30', 'If be empty not show'),
+    'SATURDAY_WORKING_TIME': ('9:30 - 17:30', 'If be empty not show'),
+    'SUNDAY_WORKING_TIME': ('9:30 - 15:00', 'If be empty not show'),
+    'COPYRIGHT': (
+        '''<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Donec malesuada lorem maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien.
+           </p>
+           <p class="copyright">
+               Copyright © 2019 All rights reserved | This template is made with
+               <i class="fa fa-heart" aria-hidden="true"></i>
+               by
+               <a href="https://colorlib.com/" target="_blank"> Colorlib</a>
+           </p>'''.replace('  ', ''),
+
+        'Enter the copyright text'
+    ),
+}

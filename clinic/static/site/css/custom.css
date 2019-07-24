@@ -23,30 +23,6 @@ a:hover {
     color: #0379c4;
 }
 
-h1 {
-    font-size: 1.618rem;
-}
-
-h2 {
-    font-size: 1.4944rem;
-}
-
-h3 {
-    font-size: 1.3708rem;
-}
-
-h4 {
-    font-size: 1.2472rem;
-}
-
-h5 {
-    font-size: 1.1236rem;
-}
-
-h6 {
-    font-size: 1rem;
-}
-
 img:not([src]) {
     visibility: hidden;
 }
@@ -176,21 +152,163 @@ To be used in CKEditor
     line-height: 2.618rem;
 }
 
-/* HEADER */
+.auto-h-margin {
+    margin-left: auto;
+    margin-right: auto;
+}
 
+.hero-slider .pagination-wrap {
+    top: 50%;
+    left: 0;
+    z-index: 99;
+    width: 120px;
+    margin-top: -60px;
+}
+
+.position-absolute {
+    position: absolute !important;
+}
+
+.flex-md-column {
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+
+.testimonial-section .bold-title {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 3.2em;
+}
+
+body.amp amp-img[layout="fixed"] img {
+    margin-right: 0;
+}
+
+body.amp amp-img[layout="fixed"] {
+    margin: 0 4px;
+}
+
+/* HEADER */
+.slide-bg-0 .amp-entry-content.mt-4 {
+    padding: 0 15px
+}
 /* FOOTER */
 
 /* RESPONSIVE */
-@media screen and (max-width: 1280px) {
+@media screen and (min-width: 1281px) {
+    .site-navigation ul {
+        left: 0;
+        padding: 30px 15px;
+    }
+
+    .container {
+        width: 100%;
+    }
+
+    .emergency-box .call-btn {
+        margin: 24px auto !important;
+    }
+
+    body.amp .header-logo {
+        position: absolute;
+        z-index: 9999;
+        width: 140px;
+    }
+
+    body.amp .site-header h1 {
+        margin: 0 15px;
+        padding-top: 180px;
+    }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1280px) {
+    .hero-slider .pagination-wrap {
+        top: auto;
+        bottom: 60px;
+        margin-top: 0;
+    }
+
+    .flex-md-column {
+        -ms-flex-direction: row;
+        flex-direction: row;
+    }
+
+    .container {
+        width: unset;
+    }
+
+    .site-header h1 {
+        margin: 0 15px;
+        padding-top: 80px;
+    }
+
+    .site-branding.d-flex {
+        padding-top: 0;
+        margin-top: 0;
+    }
+
+    .header-logo {
+        position: absolute;
+        z-index: 9999;
+        width: 120px;
+    }
+
+    .emergency-box .call-btn {
+        margin: 45px auto 24px !important;
+    }
+}
+
+@media screen and (max-width: 839px) {
+    .site-navigation ul {
+        padding: 30px 0px;
+    }
+
+    .site-navigation ul#header-menu.present {
+        left: 0;
+        display: inline;
+    }
+}
+
+@media screen and (max-width: 768px) {}
+
+@media screen and (min-width: 736px){
+    h1 {
+        font-size: 1.618rem;
+    }
+
+    h2 {
+        font-size: 1.4944rem;
+    }
+
+    h3 {
+        font-size: 1.3708rem;
+    }
+
+    h4 {
+        font-size: 1.2472rem;
+    }
+
+    h5 {
+        font-size: 1.1236rem;
+    }
+
+    h6 {
+        font-size: 1rem;
+    }
 }
 
 @media screen and (max-width: 736px) {
 }
 
 @media screen and (max-width: 667px) {
+    .site-header.wide.carouse {
+        padding: 0 20px;
+    }
+
     h1 {
         font-size: 1.4944rem;
     }
@@ -217,12 +335,16 @@ To be used in CKEditor
 }
 
 @media screen and (max-width: 640px) {
+    .opening-hours ul {
+        padding-left: 0;
+    }
 }
 
 @media screen and (max-width: 600px) {
 }
 
 @media screen and (max-width: 568px) {
+    
 }
 
 @media screen and (max-width: 480px) {

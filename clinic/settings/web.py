@@ -33,6 +33,7 @@ HTML_MINIFY = get_env_var('HTML_MINIFY', str(not DEBUG)) == 'True'
 TEMPLATES[0]['OPTIONS'] = {
     'debug': DEBUG,
     'context_processors': (
+        'constance.context_processors.config',
         'django.template.context_processors.i18n',
         'django.template.context_processors.static',
         'django.template.context_processors.request',
@@ -40,6 +41,7 @@ TEMPLATES[0]['OPTIONS'] = {
         'clinic.context_processors.global_settings',
         'django_contrib.sites.context_processors.site_settings',
         'django_contrib.amp.context_processors.amp',
+        'django.template.context_processors.media',
     ),
     # List of callables that know how to import templates from
     # various sources.

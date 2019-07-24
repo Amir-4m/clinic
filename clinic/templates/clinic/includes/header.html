@@ -1,33 +1,42 @@
-{% load i18n staticfiles %}
-<header class="site-header{% if extend_header %} wide{% endif %}">
+{% load i18n staticfiles carousel %}
+<header class="site-header{% if extend_header %} wide{% endif %}{% if header_carousel %} carousel{% endif %}">
 	<div class="nav-bar mdl-layout">
 		<div class="mdl-layout__content">
 			<div class="mdl-grid">
-				<div class="mdl-cell mdl-cell--1-col mdl-cell--hide-tablet"></div>
+				<div class="mdl-cell mdl-cell--1-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
 				<div class="header-layout mdl-cell mdl-cell--10-col mdl-grid">
 					<div class="site-branding d-flex mdl-cell mdl-cell--2-col">
 						<a class="d-block" href="index.html" rel="home">
-							<img{% if is_amp %}-amp{% endif %} class="Xd-block" src="{{ STATIC_URL }}site/images/theme/logo.png" alt="logo">
+							{% if is_amp %}
+							<amp-img class="header-logo" layout="responsive" width="135" height="45" src="{{ MEDIA_URL }}{{ config.LOGO  }}" alt="logo"></amp-img>
+							{%  else%}
+							<img class="header-logo" src="{{ MEDIA_URL }}{{ config.LOGO  }}" alt="logo">
+							{% endif %}
 						</a>
 					</div>
 					<nav class="site-navigation mdl-cell mdl-cell--10-col-desktop mdl-cell--3-col-tablet mdl-cell--5-col-phone">
-						<ul class="d-flex">
+						<ul id="header-menu" [class]="visibleMenus? 'present' : 'd-flex'" class="d-flex">
 							<li class="mdl-layout-spacer"></li>
-							<li class="current-menu-item"><a href="index.html">Home</a></li>
-							<li><a href="about.html">About us</a></li>
-							<li><a href="services.html">Services</a></li>
-							<li><a href="news.html">News</a></li>
-							<li><a href="contact.html">Contact</a></li>
+							<li class="current-menu-item"><a href="{% url 'home' %}">{% trans "Home" %}</a></li>
+							<li><a href="{% url 'about' %}">{% trans "About us" %}</a></li>
+							<li><a href="{% url 'services' %}">{% trans "Services" %}</a></li>
+							<li><a href="">{% trans "News" %}</a></li>
+							<li><a href="{% url 'contact' %}">{% trans "Contact" %}</a></li>
 							<li class="iconic-item">
 								<div class="call-btn mdl-button mdl-button--accent mdl-cell mdl-cell--middle button gradient-bg mt-3 mt-md-0">
 									<a class="d-flex" href="#">
-										<img{% if is_amp %}-amp{% endif %} src="{{ STATIC_URL }}site/images/theme/emergency-call.png"> +34 586 778 8892
+										{% if is_amp %}
+										<amp-img layout="fixed" width="32" height="32" src="{{ STATIC_URL }}site/images/theme/emergency-call.png"></amp-img>
+										{%  else%}
+										<img src="{{ STATIC_URL }}site/images/theme/emergency-call.png">
+										{% endif %}
+										{{ config.PHONE }}
 									</a>
 								</div>
 							</li>
 						</ul>
 					</nav>
-					<div class="hamburger-menu mdl-menu mdl-menu--top-right mdl-cell mdl-cell--middle mdl-cell--hide-desktop mdl-cell--1-col">
+					<div class="hamburger-menu mdl-menu mdl-menu--top-right mdl-cell mdl-cell--middle mdl-cell--hide-desktop mdl-cell--1-col" role="button" tabindex="0" on="tap:AMP.setState({visibleMenus: !visibleMenus})">
 						<span></span>
 						<span></span>
 						<span></span>
@@ -37,22 +46,30 @@
 			</div>
 		</div>
 	</div>
-	{% if extend_header %}
+	{% if extend_header or header_carousel %}
+	{% if header_carousel %}
+		{% carousel header_carousel is_amp %}
+	{% else %}
 	<div class="mdl-layout__content mdl-cell">
 		<div class="mdl-grid">
-			<div class="mdl-cell mdl-cell--4-col"></div>
-				<div class="mdl-cell mdl-cell--8-col">
-					<h1>Services</h1>
+			<div class="mdl-cell mdl-cell--3-col"></div>
+				<div class="mdl-cell mdl-cell--9-col">
+					<h1>{{ page }}</h1>
 					<div class="breadcrumbs">
 						<ul class="d-flex">
 							<li><a href="#">Home</a></li>
-							<li>Services</li>
+							<li>{{ page }}</li>
 						</ul>
 					</div>
 				</div>
 			</div>
 		</div>
-		<img{% if is_amp %}-amp{% endif %} class="header-img" src="{{ STATIC_URL }}site/images/theme/service-bg.png" alt="">
+		{% if is_amp %}
+		<amp-img width="50" height="50" class="header-img" src="{{ STATIC_URL }}site/images/theme/{{ page.split|join:'_'|lower }}-bg.png"></amp-img>
+		{% else %}
+		<img class="header-img" src="{{ STATIC_URL }}site/images/theme/{{ page.split|join:'_'|lower }}-bg.png" alt="">
+		{% endif %}
 	</div>
+	{% endif %}
 	{% endif %}
 </header>
