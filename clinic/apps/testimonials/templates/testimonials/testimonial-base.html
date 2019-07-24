@@ -1,0 +1,5 @@
+{% if is_amp %}
+	{% include "testimonials/amp/testimonials.html" with testimonials=testimonials %}
+{% else %}
+	{% include "testimonials/testimonials.html" %}
+{% endif %}

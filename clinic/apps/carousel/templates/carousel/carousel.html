@@ -1,8 +1,7 @@
 {% load i18n %}
-<div class="swiper-container hero-slider">
-	<div class="swiper-wrapper">
+	<div id="{{ carousel.slug }}" class="swiper-container hero-slider">
 		{% for slide in carousel.slides.all %}
-		<div class="swiper-slide hero-content-wrap{% if forloop.counter == 1 %} swiper-slide-active{%endif%}{% if forloop.counter == 2 %} swiper-slide-next{%endif%}" style="background-image: url('{{ slide.image.url }}')">
+		<div class="swiper-slide hero-content-wrap{% if forloop.counter == 1 %} swiper-slide-active{% else %} swiper-slide-hide{%endif%}{% if forloop.counter == 2 %} swiper-slide-next{%endif%} slide-bg-{{ forloop.counter0 }}">
 			<div class="hero-content-overlay position-absolute w-100 h-100">
 				<div class="container h-100">
 					<div class="mdl-grid Xrow h-100">
@@ -24,14 +23,14 @@
 			</div>
 		</div>
 		{% endfor %}
-	</div>
-	<div class="pagination-wrap position-absolute w-100">
-		<div class="swiper-pagination d-flex flex-row flex-md-column swiper-pagination-clickable swiper-pagination-bullets">
-			{% for slide in carousel.slides.all %}
-			<span data-slide="{{ forloop.counter0 }}" class="swiper-pagination-bullet{% if forloop.counter == 1 %} swiper-pagination-bullet-active{% endif %}">
-			{{ forloop.counter }}
-			</span>
-			{% endfor %}
+		<div class="pagination-wrap position-absolute w-100">
+			<div class="swiper-pagination d-flex flex-row flex-md-column swiper-pagination-clickable swiper-pagination-bullets">
+				{% for slide in carousel.slides.all %}
+				<span onclick="showSlide('{{ carousel.slug }}', {{ forloop.counter0 }})" data-slide="{{ forloop.counter0 }}" class="swiper-pagination-bullet{% if forloop.counter == 1 %} swiper-pagination-bullet-active{% endif %}">
+				{{ forloop.counter }}
+				</span>
+				{% endfor %}
+			</div>
 		</div>
 	</div>
 </div>

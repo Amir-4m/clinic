@@ -9,6 +9,9 @@ from .converters import AMPConverter
 register_converter(AMPConverter, 'amp')
 
 urlpatterns += [
+    path(r'about/', include('clinic.apps.about_us.urls')),
+    path(r'services/', include('clinic.apps.services.urls')),
+    path(r'contact/', include('clinic.apps.contact.urls')),
     path(r'', include('clinic.apps.home.urls')),
     path(
         'robots.txt',

@@ -1,0 +1,30 @@
+.swiper-container {
+	display: flex;
+	flex-flow: row;
+	height: 100%;
+}
+
+.swiper-slide {
+	/*display: none;*/
+	visibility: hidden;
+    opacity: 0;
+    /*height: 0 !important;*/
+    width: 100%;
+    transition: visibility 0s linear 300ms, opacity 300ms;
+}
+
+.swiper-slide-hide {
+	display: none;
+}
+
+.swiper-slide.swiper-slide-active {
+	visibility: visible;
+	display: block;
+    opacity: 1;
+    /*height: 100% !important;*/
+    transition: visibility 0s linear 0s, opacity 300ms;
+}
+
+.swiper-pagination-bullet {
+	cursor: pointer;
+}

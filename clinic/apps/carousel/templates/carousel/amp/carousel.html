@@ -1,0 +1,32 @@
+{% load i18n %}
+	<div id="{{ carousel.slug }}" class="">
+		<amp-carousel width="100" height="200" controls layout="responsive" type="slides">
+		{% for slide in carousel.slides.all %}
+			<div class="slide-bg-{{ forloop.counter0 }}">
+				<div>
+					<header class="amp-entry-header">
+						<h1>{{ slide.title|safe }}</h1>
+					</header>
+					<div class="amp-entry-content mt-4">
+						{{ slide.content|safe }}
+					</div>
+					{% if slide.details_link %}
+					<footer class="amp-entry-footer d-flex flex-wrap align-items-center mt-4">
+						<a href="{{ slide.details_link }}" class="button gradient-bg">{% trans "Read More" %}</a>
+					</footer>
+					{% endif %}
+				</div>
+			</div>
+		{% endfor %}
+		</amp-carousel>
+		<!-- <div class="pagination-wrap position-absolute w-100">
+			<div class="swiper-pagination d-flex flex-row flex-md-column swiper-pagination-clickable swiper-pagination-bullets">
+				{% for slide in carousel.slides.all %}
+				<span onclick="showSlide('{{ carousel.slug }}', {{ forloop.counter0 }})" data-slide="{{ forloop.counter0 }}" class="swiper-pagination-bullet{% if forloop.counter == 1 %} swiper-pagination-bullet-active{% endif %}">
+				{{ forloop.counter }}
+				</span>
+				{% endfor %}
+			</div>
+		</div> -->
+	</div>
+</div>

@@ -1,0 +1,29 @@
+<div class="our-departments amp-item">
+	<div class="container">
+		<div class="mdl-grid">
+			<div class="mdl-cell mdl-cell--12-col">
+				<div class="our-departments-wrap">
+					<h2>Our Departments</h2>
+					<div class="mdl-grid">
+						{% for department in departments %}
+						<div class="mdl-cell mdl-cell--12-col mdl-cell--4-col-desktop mdl-cell--6-col-tablet">
+							<div class="our-departments-cont">
+								<header class="entry-header d-flex flex-wrap align-items-center amp-item">
+									<amp-img src="{{ department.logo.url }}" width="36" height="36" layout="fixed" alt=""></amp-img>
+									<h3>{{ department.title }}</h3>
+								</header>
+								<div class="entry-content">
+									<p>{{ department.descriptions }}</p>
+								</div>
+								{% comment %}<footer class="entry-footer">
+									<a href="#">read more</a>
+								</footer>{% endcomment %}
+							</div>
+						</div>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

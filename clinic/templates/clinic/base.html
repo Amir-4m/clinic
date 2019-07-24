@@ -98,6 +98,16 @@
     {% block javascripts %}
     <script src="{{ STATIC_URL }}lazy/js/images.js"></script>
     <script src="{{ STATIC_URL }}site/js/script.js"></script>
+    <script type="text/javascript">
+        (function () {
+            function toggleSidebarMenus() {
+                var menu = document.getElementById('header-menu');
+                menu.classList.toggle('present');
+            }
+
+            document.getElementsByClassName('hamburger-menu')[0].onclick = toggleSidebarMenus;
+        })();
+    </script>
     {% endblock %}
     {% block extra_js %}{% endblock %}
     {% endcompress %}

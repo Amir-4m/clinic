@@ -2,23 +2,25 @@
 {% load carousel %}
 
 {% if load_carousel or header_carousel %}
-	{% block extra_css %}
-    	{% carousel_css_tags %}
+	{% block css %}
+		{{ block.super }}
+		{% carousel_css_tags header_carousel is_amp %}
 	{% endblock %}
 
-	{% block extra_js %}
-	    {% carousel_js_tags %}
+	{% block javascripts %}
+		{{ block.super }}
+		{% carousel_js_tags is_amp %}
+		{% if is_amp %}
+		<script async custom-element="amp-bind" src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"></script>
+		{% endif %}
 	{% endblock %}
 {% endif %}
-
 
 
 {% block body %}
 <div id="outer-wrapper">
   {% include 'clinic/includes/header.html' %}
-  <div class="container row" id="main-wrapper">
-    <div class="content" id="content-wrapper">{% block content %}  {% endblock %}</div>
-  </div>
+    {% block content %}  {% endblock %}
   {% include 'clinic/includes/footer.html' %}
 </div>
 {% endblock %}
