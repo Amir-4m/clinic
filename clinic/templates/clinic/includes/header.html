@@ -65,7 +65,7 @@
 			</div>
 		</div>
 		{% if is_amp %}
-		<amp-img width="50" height="50" class="header-img" src="{{ STATIC_URL }}site/images/theme/{{ page.split|join:'_'|lower }}-bg.png"></amp-img>
+		<amp-img width="50" height="50" class="header-img" src="{{ STATIC_URL }}site/images/theme/{{ page.split|join:'_'|lower }}-bg.png" layout="responsive"></amp-img>
 		{% else %}
 		<img class="header-img" src="{{ STATIC_URL }}site/images/theme/{{ page.split|join:'_'|lower }}-bg.png" alt="">
 		{% endif %}

@@ -1,17 +1,16 @@
 {% extends "clinic/layout.html" %}
-
-{% load i18n staticfiles departmentsbox testimonials %}
-
-{% block css %}
-	{{ block.super }}
-	{% departmentsbox_css_tags bg_image=departmentsbox_bg_image %}
-	{% testimonials_css_tags bg_image=testimonials_bg_image %}
-{% endblock %}
+{% load i18n staticfiles %}
 
 {% block extra_head %}
 {{ block.super }}
 <link rel="canonical" href="/about/">
 {% endblock %}
+
+{% block css %}
+{{ block.super }}
+<link rel="stylesheet" href="{{ STATIC_URL }}about_us/css/about_us.css">
+{% endblock %}
+
 
 {% block content %}
 {% comment %} About History {% endcomment %}
@@ -19,12 +18,14 @@
 	<div class="container">
 		<div class="mdl-grid align-items-end">
 			<div class="mdl-cell--12-col mdl-cell--6-col-desktop">
-				<h2>MedArt History</h2>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien. Suspendisse cursus faucibus finibus. Curabitur ut augue finibus, luctus tortor at, ornare erat. Nulla facilisi. Sed est risus, laoreet et quam non, viverra accumsan leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien. Suspendisse cursus faucibus finibus. Curabitur ut augue finibus, luctus tortor at, ornare erat. </p>
-				<a class="d-inline-block button gradient-bg" href="#">Read More</a>
+				<h2>{{ history.title }}</h2>
+				<p>{{ history.text }}</p>
+				{% if history.details_link %}
+				<a class="d-inline-block button gradient-bg" href="{{ history.details_link }}">{% trans "Read More" %}</a>
+				{% endif %}
 			</div>
 			<div class="mdl-cell--12-col mdl-cell--6-col-desktop mdl-cell--bottom mt-5 mt-lg-0">
-				<amp-img width="320" height="320" layout="responsive" class="responsive" src="{{ STATIC_URL }}site/images/theme/about.jpg" alt="">
+				<amp-img width="50" height="25" layout="responsive" class="responsive" src="{{ history.image.url }}" alt=""></amp-img>
 			</div>
 		</div>
 	</div>
@@ -36,40 +37,28 @@
 	<div class="container">
 		<div class="mdl-grid">
 			<div class="mdl-cell--12-col">
-				<h2>Faq &amp; Stuff</h2>
+				<h2>{% trans "Faq &amp; Stuff" %}</h2>
 			</div>
 			<div class="mdl-cell--12-col mdl-cell--6-col-desktop mb-5 mb-lg-0">
 				<div class="accordion-wrap type-accordion">
-				<h3 class="entry-title d-flex justify-content-between align-items-center active">Elit mir congue ligula et efficitur pellentesqu<span class="arrow-d"></span></h3>
-					<div class="entry-content accordion-active" style="display: block;">
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris.</p>
+					{% for faq in faqs %}
+					<h3 role="tab" tabindex="{{ forloop.counter }}" class="entry-title d-flex justify-content-between align-items-center{% if forloop.counter == 1 %} active{% endif %}" on="tap:AMP.setState({visibleAnswer: {{ forloop.counter0 }} })">{{ faq.question }}<span [class]="visibleAnswer == {{ forloop.counter0 }}? 'arrow arrow-d' : 'arrow arrow-r'" class="arrow {% if forloop.counter == 1 %}arrow-d{% else %}arrow-r{% endif %}"></span></h3>
+					<div [class]="visibleAnswer == {{ forloop.counter0 }}? 'entry-content accordion-active' : 'entry-content'" class="entry-content{% if forloop.counter == 1 %} accordion-active{% endif %}">{{ faq.answer }}</p>
 					</div>
-					<h3 class="entry-title d-flex justify-content-between align-items-center">Pulvinar elit mi. Integer congue ligula et efficitur <span class="arrow-r"></span></h3>
-					<div class="entry-content" style="display: none;">
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris.</p>
-					</div>
-					<h3 class="entry-title d-flex justify-content-between align-items-center">Pellentesque pulvinar elit mi. Integer congue<span class="arrow-r"></span></h3>
-					<div class="entry-content" style="display: none;">
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris.</p>
-					</div>
+					{% endfor %}
 				</div>
 			</div>
 			<div class="mdl-cell--12-col mdl-cell--6-col-desktop mt-5 mt-lg-0">
 				<div class="mdl-grid">
+					{% for stuff in stuffs %}
 					<div class="mdl-cell--6-col mdl-cell--6-col-tablet mdl-cell--6-col-phone">
 						<div class="professional-box">
-							<h2 class="d-flex align-items-center">Professional</h2>
-							<amp-img width="32" height="32" layout="fixed" src="{{ STATIC_URL }}site/images/theme/cardiogram-2.png" alt="">
-							<p>Lorem ipsum dolor sit amet, cons ectetur adipiscing elit. Donec males uada lorem.</p>
+							<h2 class="d-flex align-items-center">{{ stuff.title }}</h2>
+							<amp-img width="50" height="50" layout="fixed" src="{{ stuff.logo.url }}" alt=""></amp-img>
+							<p>{{ stuff.description }}</p>
 						</div>
 					</div>
-					<div class="mdl-cell--6-col mdl-cell--6-col-tablet mdl-cell--6-col-phone">
-						<div class="quality-box">
-							<h2 class="d-flex align-items-center">Quality</h2>
-							<amp-img width="32" height="32" layout="fixed" src="{{ STATIC_URL }}site/images/theme/hospital.png" alt="">
-							<p>Lorem ipsum dolor sit amet, cons ectetur adipiscing elit. Donec males uada lorem.</p>
-						</div>
-					</div>
+					{% endfor %}
 				</div>
 			</div>
 		</div>
@@ -82,36 +71,17 @@
 	<div class="container">
 		<div class="mdl-grid">
 			<div class="mdl-cell mdl-cell--12-col">
-				<h2>The Medical Team</h2>
+				<h2>{% trans "The Medical Team" %}</h2>
 			</div>
+			{% for member in members %}
 			<div class="mdl-cell mdl-cell--12-col-phone mdl-cell--6-col-tablet mdl-cell--3-col-desktop">
 				<div class="medical-team-wrap">
-					<amp-img width="32" height="32" layout="responsive" src="{{ STATIC_URL }}site/images/theme/team-1.jpg" alt="">
-					<h4>Christinne Smith</h4>
-					<h5>PHD Surgeon</h5>
+					<amp-img width="50" height="50" layout="responsive" src="{{ member.avatar.url }}" alt=""></amp-img>
+					<h4>{{ member.name }}</h4>
+					<h5>{{ member.degree }}</h5>
 				</div>
 			</div>
-			<div class="mdl-cell mdl-cell--12-col-phone mdl-cell--6-col-tablet mdl-cell--3-col-desktop mt-5 mt-md-0">
-				<div class="medical-team-wrap">
-					<amp-img width="32" height="32" layout="responsive" src="{{ STATIC_URL }}site/images/theme/team-2.jpg" alt="">
-					<h4>Anna Gustav</h4>
-					<h5>PHD Surgeon</h5>
-			 	</div>
-			</div>
-			<div class="mdl-cell mdl-cell--12-col-phone mdl-cell--6-col-tablet mdl-cell--3-col-desktop mt-5 mt-lg-0">
-				<div class="medical-team-wrap">
-					<amp-img width="32" height="32" layout="responsive" src="{{ STATIC_URL }}site/images/theme/team-3.jpg" alt="">
-					<h4>Phillip Williams</h4>
-					<h5>PHD Surgeon</h5>
-				</div>
-			</div>
-			<div class="mdl-cell mdl-cell--12-col-phone mdl-cell--6-col-tablet mdl-cell--3-col-desktop mt-5 mt-lg-0">
-				<div class="medical-team-wrap">
-					<amp-img width="32" height="32" layout="responsive" src="{{ STATIC_URL }}site/images/theme/team-4.jpg" alt="">
-					<h4>Gina James</h4>
-					<h5>PHD Surgeon</h5>
-				</div>
-			</div>
+			{% endfor %}
 		</div>
 	</div>
 </div>
