@@ -222,6 +222,7 @@ body.amp amp-img[layout="fixed"] {
     body.amp .site-header h1 {
         margin: 0 15px;
         padding-top: 180px;
+        white-space: nowrap;
     }
 }
 

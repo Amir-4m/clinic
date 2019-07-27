@@ -1,17 +1,17 @@
 {% extends "clinic/layout.html" %}
-
-{% load i18n staticfiles departmentsbox testimonials %}
-
-{% block css %}
-	{{ block.super }}
-	{% departmentsbox_css_tags bg_image=departmentsbox_bg_image %}
-	{% testimonials_css_tags bg_image=testimonials_bg_image %}
-{% endblock %}
+{% load i18n staticfiles departmentsbox %}
 
 {% block extra_head %}
 {{ block.super }}
 <link rel="canonical" href="/services/">
 {% endblock %}
+
+{% block css %}
+	{{ block.super }}
+	{% departmentsbox_css_tags is_amp bg_image=departmentsbox_bg_image %}
+	<link rel="stylesheet" href="{{ STATIC_URL }}services/css/services.css">
+{% endblock %}
+
 
 {% block content %}
 {% comment %} Only Top Quality Services {% endcomment %}
@@ -19,18 +19,17 @@
 	<div class="container">
 		<div class="mdl-grid">
 			<div class="mdl-cell mdl-cell--12-col">
-				<h2>Only Top Quality Services</h2>
+				{% for article in articles %}
+				<h2>{{ article.title }}</h2>
 				<div class="mdl-grid">
-					<div class="mdl-cell--12-col mdl-cell--6-col-tablet mdl-cell--6-col-desktop">
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem ma ximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien. Suspendisse cursus faucibus finibus. Curabitur ut augue finibus, luctus tortor at, ornare erat. Nulla facilisi. Sed est risus, laoreet et quam non, malesuada viverra accumsan leo.</p>
-					</div>
-					<div class="mdl-cell--12-col mdl-cell--6-col-tablet mdl-cell--6-col-desktop">
-						<p>Amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien. Suspendisse cursus faucibus finibus. Curabitur ut augue finibus, luctus tortor at, ornare erat. Nulla facilisi. Sed est risus, laoreet et quam non, viverra accumsan leo.</p>
-					</div>
+					{{ article.description|safe }}
 				</div>
+				{% if article.read_more_link %}
 				<div class="mdl-grid w-100 text-center mt-5">
-					<a class="button gradient-bg" href="#">Read More</a>
+					<a class="button gradient-bg" href="{{ article.read_more_link }}">{% trans "Read More" %}</a>
 				</div>
+				{% endif %}
+				{% endfor %}
 			</div>
 		</div>
 	</div>
@@ -39,7 +38,7 @@
 
 
 {% comment %} Our Departments {% endcomment %}
-{% departmentsbox %}
+{% departmentsbox is_amp %}
 
 
 
@@ -50,43 +49,24 @@
 			<div class="services-tabs">
 				<div class="tabs">
 					<ul class="tabs-nav d-flex flex-wrap">
-						<li class="tab-nav d-flex justify-content-center align-items-center active" data-target="#tab_1">Pellentesque pulvinar</li>
-						<li class="tab-nav d-flex justify-content-center align-items-center" data-target="#tab_2"> Pellentesque lacinia </li>
-						<li class="tab-nav d-flex justify-content-center align-items-center" data-target="#tab_3">Consectetur diam</li>
-						<li class="tab-nav d-flex justify-content-center align-items-center" data-target="#tab_4">CMauris tortor</li>
-						<li class="tab-nav d-flex justify-content-center align-items-center" data-target="#tab_5">Phasellus sit amet</li>
+						{% for desc in descriptions_tabs %}
+						<li role="tab" tabindex="{{ forloop.counter }}" [class]="visibleTab == {{ forloop.counter0 }} ? 'tab-nav d-flex active' : 'tab-nav d-flex'"  class="tab-nav d-flex justify-content-center align-items-center{% if forloop.counter == 1 %} active{% endif %}" on="tap:AMP.setState({visibleTab: {{ forloop.counter0 }} })">{{ desc.name }}</li>
+						{% endfor %}
 					</ul>
 					<div class="tabs-container">
-						<div id="tab_1" class="tab-content" style="display: block;">
-							<amp-img width="64" height="64" layout="responsive" src="{{ STATIC_URL }}site/images/theme/service-tab-img.png" alt=""></amp-img>
-							<h4>Scelerisque, at rutrum nulla dictum. Ut ac ligula sapien. </h4>
-							<p>Amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien. Suspendisse cursus faucibus finibus. Curabitur ut augue finibus, luctus tortor at, ornare erat. Nulla facilisi. Sed est risus, laoreet et quam non, viverra accumsan leo. Amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien. Suspendisse cursus faucibus finibus</p>
+						{% for desc in descriptions_tabs %}
+						<div [class]="visibleTab == {{ forloop.counter0 }}? 'tab-content tab-content-active mdl-grid' : 'tab-content mdl-grid'" class="tab-content{% if forloop.counter == 1 %} tab-content-active{% endif %}">
+							<amp-img src="{{ desc.image.url }}" width="100" height="60" layout="responsive" class="mdl-cell mdl-cell--12-col-phone mdl-cell--12-col-tablet mdl-cell--6-col-desktop"></amp-img>
+							<div class="mdl-cell mdl-cell--12-col-phone mdl-cell--12-col-tablet mdl-cell--6-col-desktop">
+								<h4>{{ desc.title }}</h4>
+								<p>{{ desc.description|safe }}</p>
+							</div>
 						</div>
-						<div id="tab_2" class="tab-content" style="display: none;">
-							<amp-img width="64" height="64" layout="responsive" src="{{ STATIC_URL }}site/images/theme/service-tab-img.png" alt=""></amp-img>
-							<h4>Scelerisque, at rutrum nulla dictum. Ut ac ligula sapien. </h4>
-							<p>Amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien. Suspendisse cursus faucibus finibus. Curabitur ut augue finibus, luctus tortor at, ornare erat. Nulla facilisi. Sed est risus, laoreet et quam non, viverra accumsan leo. Amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien. Suspendisse cursus faucibus finibus</p>
-						</div>
-						<div id="tab_3" class="tab-content" style="display: none;">
-							<amp-img width="64" height="64" layout="responsive" src="{{ STATIC_URL }}site/images/theme/service-tab-img.png" alt=""></amp-img>
-							<h4>Scelerisque, at rutrum nulla dictum. Ut ac ligula sapien. </h4>
-							<p>Amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien. Suspendisse cursus faucibus finibus. Curabitur ut augue finibus, luctus tortor at, ornare erat. Nulla facilisi. Sed est risus, laoreet et quam non, viverra accumsan leo. Amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien. Suspendisse cursus faucibus finibus</p>
-	 					</div>
-						<div id="tab_4" class="tab-content" style="display: none;">
-							<amp-img width="64" height="64" layout="responsive" src="{{ STATIC_URL }}site/images/theme/service-tab-img.png" alt=""></amp-img>
-							<h4>Scelerisque, at rutrum nulla dictum. Ut ac ligula sapien. </h4>
-							<p>Amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien. Suspendisse cursus faucibus finibus. Curabitur ut augue finibus, luctus tortor at, ornare erat. Nulla facilisi. Sed est risus, laoreet et quam non, viverra accumsan leo. Amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien. Suspendisse cursus faucibus finibus</p>
-						</div>
-						<div id="tab_5" class="tab-content" style="display: none;">
-							<amp-img width="64" height="64" layout="responsive" src="images/service-tab-img.png" alt=""></amp-img>
-							<h4>Scelerisque, at rutrum nulla dictum. Ut ac ligula sapien. </h4>
-							<p>Amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien. Suspendisse cursus faucibus finibus. Curabitur ut augue finibus, luctus tortor at, ornare erat. Nulla facilisi. Sed est risus, laoreet et quam non, viverra accumsan leo. Amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien. Suspendisse cursus faucibus finibus</p>
-						</div>
+						{% endfor %}
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
-
 {% endblock %}

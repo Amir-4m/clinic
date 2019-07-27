@@ -3,7 +3,7 @@
 
 {% block extra_head %}
 {{ block.super }}
-<link rel="amphtml" href="contact/amp/">
+<link rel="amphtml" href="/contact/amp/">
 {% endblock %}
 
 
@@ -44,26 +44,32 @@
 {% comment %} Contact Form {% endcomment %}
 <div class="contact-form">
 	<div class="container">
-		<div class="mdl-grid">
-			<div class="mdl-cell mdl-cell--12-col">
-				<h2>Get in Touch</h2>
+		<form method="post" action='.'>
+			<div class="mdl-grid">
+				<div class="mdl-cell mdl-cell--12-col">
+					<h2>{% trans "Get in Touch" %}</h2>
+				</div>
+				<div class="mdl-cell mdl-cell--4-col mdl-cell--12-col-phone col-12  col-md-4">
+					{{ form.name }}
+					{{ form.name.errors }}
+				</div>
+				<div class="mdl-cell mdl-cell--4-col mdl-cell--12-col-phone">
+					{{ form.email }}
+					{{ form.email.errors }}
+				</div>
+				<div class="mdl-cell mdl-cell--4-col mdl-cell--12-col-phone">
+					{{ form.subject }}
+					{{ form.subject.errors }}
+				</div>
+				<div class="mdl-cell mdl-cell--12-col">
+					{{ form.message }}
+					{{ form.message.errors }}
+				</div>
+				<div class="mdl-cell mdl-cell--12-col">
+					<input type="submit" name="" value="Send Message" class="button gradient-bg">
+				</div>
 			</div>
-			<div class="mdl-cell mdl-cell--4-col mdl-cell--12-col-phone col-12  col-md-4">
-				<input type="text" placeholder="Name">
-			</div>
-			<div class="mdl-cell mdl-cell--4-col mdl-cell--12-col-phone">
-				<input type="email" placeholder="E-mail">
-			</div>
-			<div class="mdl-cell mdl-cell--4-col mdl-cell--12-col-phone">
-				<input type="text" placeholder="Subject">
-			</div>
-			<div class="mdl-cell mdl-cell--12-col">
-				<textarea name="name" rows="12" cols="80" placeholder="Message"></textarea>
-			</div>
-			<div class="mdl-cell mdl-cell--12-col">
-				<input type="submit" name="" value="Send Message" class="button gradient-bg">
-			</div>
-		</div>
+		</form>
 	</div>
 </div>
 

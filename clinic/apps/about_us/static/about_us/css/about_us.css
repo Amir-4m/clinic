@@ -1,0 +1,178 @@
+.accordion-wrap {
+    position: relative
+}
+
+.accordion-wrap .entry-content {
+    margin: 0
+}
+
+.accordion-wrap .entry-title {
+    padding: 12px 38px;
+    margin-bottom: 15px;
+    background: #f3f3f3;
+    font-size: 16px;
+    font-weight: 600;
+    color: #404040;
+    cursor: pointer
+}
+
+.accordion-wrap .entry-title {
+    border: 0;
+    background: -moz-linear-gradient(180deg, rgba(50, 200, 250, 1) 0%, rgba(88, 125, 228, 1) 100%);
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba(50, 200, 250, 1)), color-stop(100%, rgba(188, 125, 228, 1)));
+    background: -webkit-linear-gradient(180deg, rgba(50, 200, 250, 1) 0%, rgba(88, 125, 228, 1) 100%);
+    background: -o-linear-gradient(180deg, rgba(50, 200, 250, 1) 0%, rgba(88, 125, 228, 1) 100%);
+    background: -ms-linear-gradient(180deg, rgba(50, 200, 250, 1) 0%, rgba(88, 125, 228, 1) 100%);
+    background: linear-gradient(270deg, rgba(50, 200, 250, 1) 0%, rgba(88, 125, 228, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#18a3eb', endColorstr='#18a3eb', GradientType=1);
+    color: #fff
+}
+
+.accordion-wrap .entry-title .arrow-r,
+.accordion-wrap .entry-title .arrow-d {
+    position: absolute;
+    right: 40px;
+}
+
+.accordion-wrap .entry-title .arrow-r::before,
+.accordion-wrap .entry-title .arrow-d::before {
+    content: "+";
+    font-size: 24px;
+    font-weight: 400
+}
+
+.accordion-wrap .entry-title .arrow-d::before {
+    content: "-"
+}
+
+.accordion-wrap .entry-content {
+    display: none;
+    color: #f1f1f1;
+}
+
+.accordion-wrap .entry-content.accordion-active {
+    display: block;
+}
+
+.accordion-wrap .entry-content p {
+    padding: 10px 0;
+    font-size: 14px;
+    line-height: 2;
+    color: #828282
+}
+
+.med-history {
+    padding: 100px 0
+}
+
+.med-history h2,
+.medical-team h2,
+.quality-services h2 {
+    margin-bottom: 48px;
+    font-size: 48px;
+    font-weight: 600;
+    color: #404040
+}
+
+.med-history p {
+    font-size: 14px;
+    color: #828282
+}
+
+.med-history .button {
+    margin-top: 24px
+}
+
+.med-history img {
+    max-width: 100%
+}
+
+.faq-stuff {
+    padding: 100px 0;
+    background: url(../images/faq-bg.jpg) no-repeat;
+    background-size: cover
+}
+
+.faq-stuff h2 {
+    margin-bottom: 64px;
+    font-size: 48px;
+    font-weight: 600;
+    color: #fff
+}
+
+.faq-stuff .accordion-wrap .entry-content p {
+    color: #fff
+}
+
+.professional-box,
+.quality-box {
+    position: relative;
+    padding: 24px;
+    border-radius: 20px;
+    border: 2px solid #fff;
+    text-align: center
+}
+
+.professional-box h2,
+.quality-box h2 {
+    position: absolute;
+    top: -48px;
+    left: -2px;
+    height: 48px;
+    padding-right: 16px;
+    padding-left: 16px;
+    font-size: 24px;
+    font-weight: 600;
+    color: #404040;
+    background: #fff
+}
+
+body.amp .professional-box img,
+.quality-box img {
+    margin: 4px 0
+}
+
+.professional-box img,
+.quality-box img {
+    margin: 24px 0
+}
+
+.professional-box p,
+.quality-box p {
+    margin-bottom: 0;
+    font-size: 14px;
+    line-height: 2;
+    font-weight: 500;
+    color: #fff
+}
+
+.medical-team {
+    padding: 100px 0
+}
+
+.medical-team h2 {
+    margin-bottom: 56px
+}
+
+.medical-team-wrap {
+    text-align: center
+}
+
+.medical-team-wrap img {
+    max-width: 100%;
+    border-radius: 20px
+}
+
+.medical-team-wrap h4 {
+    margin-top: 32px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #404040
+}
+
+.medical-team-wrap h5 {
+    margin-top: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #828282
+}

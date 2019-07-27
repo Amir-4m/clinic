@@ -433,6 +433,7 @@ CONSTANCE_ADDITIONAL_FIELDS = {
 }
 
 CONSTANCE_CONFIG = {
+    'NAME': ('MedArt', 'Clinic Name'),
     'LOGO': ('logo.png', 'Clinic Logo', 'image_field'),
     'PHONE': ('+345867788892', 'Enter Clinic Phone Number'),
     'EMERGENCY_PHONE': ('+345867788892', 'Enter Clinic Emergency Phone Number'),
