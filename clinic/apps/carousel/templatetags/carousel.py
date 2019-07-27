@@ -35,21 +35,15 @@ def carousel_css_tags(carousel=None, is_amp=False):
                 {extra_styles}
             }}
             '''
+
+    image_styles = f'<style>\n{image_styles}\n</style>' if image_styles else ''
     if is_amp:
-        return mark_safe(
-            f'''
-            <style amp-custom>
-            {image_styles}
-            </style>
-            '''
-        )
+        return mark_safe(image_styles)
 
     return mark_safe(
         f'''
         <link rel="stylesheet" href="{settings.STATIC_URL}carousel/css/carousel.css">
-        <style>
         {image_styles}
-        </style>
         '''
     )
 
