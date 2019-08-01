@@ -24,7 +24,7 @@ def departmentsbox_css_tags(is_amp=None, bg_image=None):
 
 
 @register.inclusion_tag('departmentsbox/departmentsbox-base.html')
-def departmentsbox(is_amp=False, bg_image=None):
+def departmentsbox(is_amp=False):
     return dict(
         departments=DepartmentService.get_all_departments(),
         is_amp=is_amp

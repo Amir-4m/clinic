@@ -19,8 +19,18 @@
 
 {% block body %}
 <div id="outer-wrapper">
-  {% include 'clinic/includes/header.html' %}
-    {% block content %}  {% endblock %}
-  {% include 'clinic/includes/footer.html' %}
+	{% if is_amp %}
+ 	{% include 'clinic/includes/header.html' with amp='amp' %}
+ 	{% else %}
+ 	{% include 'clinic/includes/header.html' with amp='' %}
+ 	{% endif %}
+
+   	{% block content %}{% endblock %}
+
+   	{% if is_amp %}
+  	{% include 'clinic/includes/footer.html' with amp='amp' %}
+  	{% else %}
+ 	{% include 'clinic/includes/header.html' with amp='' %}
+ 	{% endif %}
 </div>
 {% endblock %}

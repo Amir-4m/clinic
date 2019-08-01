@@ -321,6 +321,8 @@ INSTALLED_APPS = (
     # External Apps
     # To Persist Dynamic Settings
     'constance',
+    'sekizai',
+    'compressor',
 
     # To configure Celery tasks from admin panel
     'django_celery_beat',

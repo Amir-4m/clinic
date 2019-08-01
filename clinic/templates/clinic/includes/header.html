@@ -17,11 +17,12 @@
 					<nav class="site-navigation mdl-cell mdl-cell--10-col-desktop mdl-cell--3-col-tablet mdl-cell--5-col-phone">
 						<ul id="header-menu" [class]="visibleMenus? 'present' : 'd-flex'" class="d-flex">
 							<li class="mdl-layout-spacer"></li>
-							<li class="current-menu-item"><a href="{% url 'home' %}">{% trans "Home" %}</a></li>
-							<li><a href="{% url 'about' %}">{% trans "About us" %}</a></li>
-							<li><a href="{% url 'services' %}">{% trans "Services" %}</a></li>
+
+							<li class="current-menu-item"><a href="{% url 'home' is_amp=amp %}">{% trans "Home" %}</a></li>
+							<li><a href="{% url 'about' is_amp=amp %}">{% trans "About us" %}</a></li>
+							<li><a href="{% url 'services' is_amp=amp %}">{% trans "Services" %}</a></li>
 							<li><a href="">{% trans "News" %}</a></li>
-							<li><a href="{% url 'contact' %}">{% trans "Contact" %}</a></li>
+							<li><a href="{% url 'contact' is_amp=amp %}">{% trans "Contact" %}</a></li>
 							<li class="iconic-item">
 								<div class="call-btn mdl-button mdl-button--accent mdl-cell mdl-cell--middle button gradient-bg mt-3 mt-md-0">
 									<a class="d-flex" href="#">
