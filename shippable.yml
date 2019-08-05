@@ -16,7 +16,7 @@ build:
     - pip install --upgrade setuptools virtualenv
 
     - pip install -r "requirements/development.txt"
-    - pip install -r "requirements/django-$DJANGO.txt"
+    - pip install -r "requirements/ci/django-$DJANGO.txt"
 
     - mkdir -p clinic/logs
     - mkdir -p public/media/upload

@@ -8,7 +8,5 @@ csscompressor
 beautifulsoup4
 lxml
 django-htmlmin>=0.11.0
--e git+git@github.com:nargeel/django-fancy-imagefield.git@master#egg=django-fancy-imagefield
--e git+git@github.com:nargeel/django-contrib.git@master#egg=django-contrib
 django-cleanup
 django-constance==2.4.0
