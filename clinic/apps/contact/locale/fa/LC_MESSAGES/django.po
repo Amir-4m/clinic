@@ -1,0 +1,95 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-08-02 15:20+0430\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: forms.py:17 models.py:16
+msgid "Name"
+msgstr "نام"
+
+#: forms.py:18
+msgid "E-mail"
+msgstr "ایمیل"
+
+#: forms.py:19 models.py:18
+msgid "Subject"
+msgstr "عنوان"
+
+#: forms.py:20
+msgid "message"
+msgstr "پیام"
+
+#: models.py:11 models.py:19
+msgid "Message"
+msgstr "پیام"
+
+#: models.py:12
+msgid "Messages"
+msgstr "پیام ها"
+
+#: models.py:14
+msgid "Created"
+msgstr "ایجاد شده"
+
+#: models.py:15
+msgid "Updated"
+msgstr "بروز شده"
+
+#: models.py:17
+msgid "Email"
+msgstr "ایمیل"
+
+#: templates/contact/amp/contact.html:23 templates/contact/contact.html:18
+msgid "Opening Hours"
+msgstr "ساعات کار"
+
+#: templates/contact/amp/contact.html:25 templates/contact/contact.html:20
+msgid "Monday"
+msgstr "دوشنبه"
+
+#: templates/contact/amp/contact.html:26 templates/contact/contact.html:21
+msgid "Tuesday"
+msgstr "سه شنبه"
+
+#: templates/contact/amp/contact.html:27 templates/contact/contact.html:22
+msgid "Wendsday"
+msgstr "چهارشنبه"
+
+#: templates/contact/amp/contact.html:28 templates/contact/contact.html:23
+msgid "Thursday"
+msgstr "پنج شنبه"
+
+#: templates/contact/amp/contact.html:29 templates/contact/contact.html:24
+msgid "Friday"
+msgstr "جمعه"
+
+#: templates/contact/amp/contact.html:30 templates/contact/contact.html:25
+msgid "Saturday"
+msgstr "شنبه"
+
+#: templates/contact/amp/contact.html:31 templates/contact/contact.html:26
+msgid "Sunday"
+msgstr "یک شنبه"
+
+#: templates/contact/amp/contact.html:37 templates/contact/contact.html:32
+msgid "Emergency"
+msgstr "اضطراری"
+
+#: templates/contact/contact.html:52
+msgid "Get in Touch"
+msgstr "تماس بگیرید"

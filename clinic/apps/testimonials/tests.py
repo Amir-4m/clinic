@@ -1,3 +1,9 @@
+#!/usr/bin/env python
+# vim: ai ts=4 sts=4 et sw=4
+
+import os
+from unittest import skipIf
+
 from django.test import TestCase
 from django.conf import settings
 from django.template import Template, Context
@@ -6,6 +12,10 @@ from .apps import TestimonialsConfig
 from .services import TestimonialService
 
 
+@skipIf(
+    os.environ.get('DJANGO_SETTINGS_MODULE') != 'clinic.settings.web',
+    'This tests only run if ssettings module set as "clinic.settings.web"'
+)
 class TestimonialsTestCase(TestCase):
     def setUp(self):
         self.testimonials = TestimonialService.get_active_testimonials()
@@ -22,30 +32,30 @@ class TestimonialsTestCase(TestCase):
         styles = template.render(context)
         self.assertEqual(
             styles.replace('    ', '').strip(),
-            f'''
+            '''
                 <link rel="stylesheet" href="/static/testimonials/css/testimonials.css">
                 <style>
                 .testimonial-slider .swiper-pagination-bullet:nth-of-type(1) {{
-                    background: url({self.testimonials[0].user_avatar.url});
+                    background: url({});
                     background-size: cover;
                 }}
 
                 .testimonial-slider .swiper-pagination-bullet:nth-of-type(2) {{
-                    background: url({self.testimonials[1].user_avatar.url});
+                    background: url({});
                     background-size: cover;
                 }}
 
                 .testimonial-slider .swiper-pagination-bullet:nth-of-type(3) {{
-                    background: url({self.testimonials[2].user_avatar.url});
+                    background: url({});
                     background-size: cover;
                 }}
 
                 .testimonial-slider .swiper-pagination-bullet:nth-of-type(4) {{
-                    background: url({self.testimonials[3].user_avatar.url});
+                    background: url({});
                     background-size: cover;
                 }}
                 </style>
-            '''.replace('    ', '').strip()
+            '''.format(t.user_avatar.url for t in self.testimonials).replace('    ', '').strip()
         )
 
         context = Context()
@@ -53,26 +63,26 @@ class TestimonialsTestCase(TestCase):
         styles = template.render(context)
         self.assertEqual(
             styles.replace('    ', '').strip(),
-            f'''
+            '''
             <link rel="stylesheet" href="/static/testimonials/css/testimonials.css">
             <style>
             .testimonial-slider .swiper-pagination-bullet:nth-of-type(1) {{
-                background: url({self.testimonials[0].user_avatar.url});
+                background: url({});
                 background-size: cover;
             }}
 
             .testimonial-slider .swiper-pagination-bullet:nth-of-type(2) {{
-                background: url({self.testimonials[1].user_avatar.url});
+                background: url({});
                 background-size: cover;
             }}
 
             .testimonial-slider .swiper-pagination-bullet:nth-of-type(3) {{
-                background: url({self.testimonials[2].user_avatar.url});
+                background: url({});
                 background-size: cover;
             }}
 
             .testimonial-slider .swiper-pagination-bullet:nth-of-type(4) {{
-                background: url({self.testimonials[3].user_avatar.url});
+                background: url({});
                 background-size: cover;
             }}
 
@@ -81,7 +91,7 @@ class TestimonialsTestCase(TestCase):
                 background-size: cover;
             }}
             </style>
-            '''.replace('    ', '').strip()
+            '''.format(*[t.user_avatar.url for t in self.testimonials]).replace('    ', '').strip()
         )
 
     def test_testimonials_css_tags_for_amp(self):
@@ -90,30 +100,30 @@ class TestimonialsTestCase(TestCase):
         styles = template.render(context)
         self.assertEqual(
             styles.replace('    ', '').strip(),
-            f'''
+            '''
                 <link rel="stylesheet" href="/static/testimonials/css/testimonials.css">
                 <style>
                 .testimonial-slider .swiper-pagination-bullet:nth-of-type(1) {{
-                    background: url({self.testimonials[0].user_avatar.url});
+                    background: url({});
                     background-size: cover;
                 }}
 
                 .testimonial-slider .swiper-pagination-bullet:nth-of-type(2) {{
-                    background: url({self.testimonials[1].user_avatar.url});
+                    background: url({});
                     background-size: cover;
                 }}
 
                 .testimonial-slider .swiper-pagination-bullet:nth-of-type(3) {{
-                    background: url({self.testimonials[2].user_avatar.url});
+                    background: url({});
                     background-size: cover;
                 }}
 
                 .testimonial-slider .swiper-pagination-bullet:nth-of-type(4) {{
-                    background: url({self.testimonials[3].user_avatar.url});
+                    background: url({});
                     background-size: cover;
                 }}
                 </style>
-            '''.replace('    ', '').strip()
+            '''.format(*[t.user_avatar.url for t in self.testimonials]).replace('    ', '').strip()
         )
 
         context = Context()
@@ -123,26 +133,26 @@ class TestimonialsTestCase(TestCase):
         styles = template.render(context)
         self.assertEqual(
             styles.replace('    ', '').strip(),
-            f'''
+            '''
             <link rel="stylesheet" href="/static/testimonials/css/testimonials.css">
             <style>
             .testimonial-slider .swiper-pagination-bullet:nth-of-type(1) {{
-                background: url({self.testimonials[0].user_avatar.url});
+                background: url({});
                 background-size: cover;
             }}
 
             .testimonial-slider .swiper-pagination-bullet:nth-of-type(2) {{
-                background: url({self.testimonials[1].user_avatar.url});
+                background: url({});
                 background-size: cover;
             }}
 
             .testimonial-slider .swiper-pagination-bullet:nth-of-type(3) {{
-                background: url({self.testimonials[2].user_avatar.url});
+                background: url({});
                 background-size: cover;
             }}
 
             .testimonial-slider .swiper-pagination-bullet:nth-of-type(4) {{
-                background: url({self.testimonials[3].user_avatar.url});
+                background: url({});
                 background-size: cover;
             }}
 
@@ -151,7 +161,7 @@ class TestimonialsTestCase(TestCase):
                 background-size: cover;
             }}
             </style>
-            '''.replace('    ', '').strip()
+            '''.format(*[t.user_avatar.url for t in self.testimonials]).replace('    ', '').strip()
         )
 
     def test_get_js_tags(self):
@@ -162,7 +172,9 @@ class TestimonialsTestCase(TestCase):
         jstag = template.render(context)
         self.assertEqual(
             jstag,
-            f'<script lang="javascript" src="{settings.STATIC_URL}testimonials/js/testimonials.js"></script>'
+            '<script lang="javascript" src="{}testimonials/js/testimonials.js"></script>'.format(
+                settings.STATIC_URL
+            )
         )
 
     def test_get_js_tags_for_amp(self):
@@ -185,7 +197,7 @@ class TestimonialsTestCase(TestCase):
         content = template.render(context)
         self.assertEqual(
             content.replace('    ', '').replace('\n', '').replace('\t', '').strip(),
-            f'''
+            '''
             <section class="testimonial-section" id="id_testimonials">
             <div class="container">
                 <div class="mdl-grid">
@@ -215,7 +227,7 @@ class TestimonialsTestCase(TestCase):
                                             </div>
                                             <div class="entry-footer">
                                                 <figure class="user-avatar">
-                                                    <img src="{self.testimonials[0].user_avatar.url}" alt="">
+                                                    <img src="{}" alt="">
                                                 </figure>
                                                 <h3 class="testimonial-user">Russell Stephens
                                                     <span>University in UK</span>
@@ -233,7 +245,7 @@ class TestimonialsTestCase(TestCase):
                                             </div>
                                             <div class="entry-footer">
                                                 <figure class="user-avatar">
-                                                    <img src="{self.testimonials[1].user_avatar.url}" alt="">
+                                                    <img src="{}" alt="">
                                                 </figure>
                                                 <h3 class="testimonial-user">Roger Kohen
                                                     <span>Gagool Co</span>
@@ -251,7 +263,7 @@ class TestimonialsTestCase(TestCase):
                                             </div>
                                             <div class="entry-footer">
                                                 <figure class="user-avatar">
-                                                    <img src="{self.testimonials[2].user_avatar.url}" alt="">
+                                                    <img src="{}" alt="">
                                                 </figure>
                                                 <h3 class="testimonial-user">James Mccarty
                                                     <span>Big Picture Inc</span>
@@ -269,7 +281,7 @@ class TestimonialsTestCase(TestCase):
                                             </div>
                                             <div class="entry-footer">
                                                 <figure class="user-avatar">
-                                                    <img src="{self.testimonials[3].user_avatar.url}" alt="">
+                                                    <img src="{}" alt="">
                                                 </figure>
                                                 <h3 class="testimonial-user">Andy Cage
                                                     <span>Galaxy Zone co</span>
@@ -305,7 +317,9 @@ class TestimonialsTestCase(TestCase):
                 </div>
             </div>
         </section>
-        '''.replace('    ', '').replace('\n', '').replace('\t', '').strip()
+        '''.format(
+                *[t.user_avatar.url for t in self.testimonials]
+            ).replace('    ', '').replace('\n', '').replace('\t', '').strip()
         )
 
     def test_testimonials_tag_for_tags(self):
@@ -316,7 +330,7 @@ class TestimonialsTestCase(TestCase):
         content = template.render(context)
         self.assertEqual(
             content.replace('    ', '').replace('\n', '').replace('\t', '').strip(),
-            f'''
+            '''
             <section class="testimonial-section" id="id_testimonials">
                 <div class="container">
                     <div class="mdl-grid">
@@ -349,7 +363,7 @@ class TestimonialsTestCase(TestCase):
                                                 </div>
                                                 <div class="entry-footer">
                                                     <figure class="user-avatar">
-                                                        <amp-img src="{self.testimonials[0].user_avatar.url}"
+                                                        <amp-img src="{}"
                                                          width="24" height="24" layout="responsive" alt="">
                                                     </figure>
                                                     <h3 class="testimonial-user">Russell Stephens
@@ -370,7 +384,7 @@ class TestimonialsTestCase(TestCase):
                                                 </div>
                                                 <div class="entry-footer">
                                                     <figure class="user-avatar">
-                                                        <amp-img src="{self.testimonials[1].user_avatar.url}"
+                                                        <amp-img src="{}"
                                                          width="24" height="24" layout="responsive" alt="">
                                                     </figure>
                                                     <h3 class="testimonial-user">Roger Kohen
@@ -391,7 +405,7 @@ class TestimonialsTestCase(TestCase):
                                                 </div>
                                                 <div class="entry-footer">
                                                     <figure class="user-avatar">
-                                                        <amp-img src="{self.testimonials[2].user_avatar.url}"
+                                                        <amp-img src="{}"
                                                          width="24" height="24" layout="responsive" alt="">
                                                     </figure>
                                                     <h3 class="testimonial-user">James Mccarty
@@ -412,7 +426,7 @@ class TestimonialsTestCase(TestCase):
                                                 </div>
                                                 <div class="entry-footer">
                                                     <figure class="user-avatar">
-                                                        <amp-img src="{self.testimonials[3].user_avatar.url}"
+                                                        <amp-img src="{}"
                                                          width="24" height="24" layout="responsive" alt="">
                                                     </figure>
                                                     <h3 class="testimonial-user">Andy Cage
@@ -428,5 +442,7 @@ class TestimonialsTestCase(TestCase):
                     </div>
                 </div>
             </section>
-        '''.replace('    ', '').replace('\n', '').replace('\t', '').strip()
+        '''.format(
+                [t.user_avatar.url for t in self.testimonials]
+            ).replace('    ', '').replace('\n', '').replace('\t', '').strip()
         )

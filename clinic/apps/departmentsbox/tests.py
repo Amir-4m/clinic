@@ -1,3 +1,9 @@
+#!/usr/bin/env python
+# vim: ai ts=4 sts=4 et sw=4
+
+import os
+from unittest import skipIf
+
 from django.test import TestCase
 from django.template import Context, Template
 
@@ -7,6 +13,10 @@ from .apps import DepartmentsboxConfig
 from .services import DepartmentService
 
 
+@skipIf(
+    os.environ.get('DJANGO_SETTINGS_MODULE') != 'clinic.settings.web',
+    'This tests only run if ssettings module set as "clinic.settings.web"'
+)
 class DepartmentsBoxTestCase(TestCase):
     def setUp(self):
         self.departments = DepartmentService.get_all_departments()
@@ -70,7 +80,8 @@ class DepartmentsBoxTestCase(TestCase):
         tagcontent = temp.render(context)
         self.assertEqual(
             BeautifulSoup(tagcontent).text.replace('\n', '').replace('\t', '').replace(' ', ''),
-            BeautifulSoup(f'''
+            BeautifulSoup(
+                '''
                 <div class="our-departments"><div class="container"><div class="mdl-grid">
                 <div class="mdl-cell mdl-cell--12-col"><div class="our-departments-wrap">
                 <h2>Our Departments</h2>
@@ -78,7 +89,7 @@ class DepartmentsBoxTestCase(TestCase):
                 <div class="mdl-cell mdl-cell--12-col mdl-cell--4-col-desktop mdl-cell--6-col-tablet">
                     <div class="our-departments-cont">
                         <header class="entry-header d-flex flex-wrap align-items-center">
-                            <img src="{self.departments[0].logo.url}" alt="">
+                            <img src="{}" alt="">
                             <h3>Cardioology</h3>
                         </header>
                         <div class="entry-content">
@@ -91,7 +102,7 @@ class DepartmentsBoxTestCase(TestCase):
                 <div class="mdl-cell mdl-cell--12-col mdl-cell--4-col-desktop mdl-cell--6-col-tablet">
                     <div class="our-departments-cont">
                         <header class="entry-header d-flex flex-wrap align-items-center">
-                            <img src="{self.departments[1].logo.url}" alt="">
+                            <img src="{}" alt="">
                             <h3>Gastroenterology</h3>
                         </header>
                         <div class="entry-content">
@@ -105,7 +116,7 @@ class DepartmentsBoxTestCase(TestCase):
                 <div class="mdl-cell mdl-cell--12-col mdl-cell--4-col-desktop mdl-cell--6-col-tablet">
                     <div class="our-departments-cont">
                         <header class="entry-header d-flex flex-wrap align-items-center">
-                            <img src="{self.departments[2].logo.url}" alt="">
+                            <img src="{}" alt="">
                             <h3>Medical Lab</h3>
                         </header>
                         <div class="entry-content">
@@ -119,7 +130,7 @@ class DepartmentsBoxTestCase(TestCase):
                 <div class="mdl-cell mdl-cell--12-col mdl-cell--4-col-desktop mdl-cell--6-col-tablet">
                     <div class="our-departments-cont">
                         <header class="entry-header d-flex flex-wrap align-items-center">
-                            <img src="{self.departments[3].logo.url}" alt="">
+                            <img src="{}" alt="">
                             <h3>Dental Care</h3>
                         </header>
                         <div class="entry-content">
@@ -133,7 +144,7 @@ class DepartmentsBoxTestCase(TestCase):
                 <div class="mdl-cell mdl-cell--12-col mdl-cell--4-col-desktop mdl-cell--6-col-tablet">
                     <div class="our-departments-cont">
                         <header class="entry-header d-flex flex-wrap align-items-center">
-                            <img src="{self.departments[4].logo.url}" alt="">
+                            <img src="{}" alt="">
                             <h3>Surgery</h3>
                         </header>
                         <div class="entry-content">
@@ -147,7 +158,7 @@ class DepartmentsBoxTestCase(TestCase):
                 <div class="mdl-cell mdl-cell--12-col mdl-cell--4-col-desktop mdl-cell--6-col-tablet">
                     <div class="our-departments-cont">
                         <header class="entry-header d-flex flex-wrap align-items-center">
-                            <img src="{self.departments[5].logo.url}" alt="">
+                            <img src="{}" alt="">
                             <h3>Neurology</h3>
                         </header>
                         <div class="entry-content">
@@ -161,7 +172,7 @@ class DepartmentsBoxTestCase(TestCase):
                 <div class="mdl-cell mdl-cell--12-col mdl-cell--4-col-desktop mdl-cell--6-col-tablet">
                     <div class="our-departments-cont">
                         <header class="entry-header d-flex flex-wrap align-items-center">
-                            <img src="{self.departments[6].logo.url}" alt="">
+                            <img src="{}" alt="">
                             <h3>Orthopaedy</h3>
                         </header>
                         <div class="entry-content">
@@ -175,7 +186,7 @@ class DepartmentsBoxTestCase(TestCase):
                 <div class="mdl-cell mdl-cell--12-col mdl-cell--4-col-desktop mdl-cell--6-col-tablet">
                     <div class="our-departments-cont">
                         <header class="entry-header d-flex flex-wrap align-items-center">
-                            <img src="{self.departments[7].logo.url}" alt="">
+                            <img src="{}" alt="">
                             <h3>Pediatry</h3>
                         </header>
                         <div class="entry-content">
@@ -189,7 +200,7 @@ class DepartmentsBoxTestCase(TestCase):
                 <div class="mdl-cell mdl-cell--12-col mdl-cell--4-col-desktop mdl-cell--6-col-tablet">
                     <div class="our-departments-cont">
                         <header class="entry-header d-flex flex-wrap align-items-center">
-                            <img src="{self.departments[8].logo.url}" alt="">
+                            <img src="{}" alt="">
                             <h3>Ophthalmology</h3>
                         </header>
                         <div class="entry-content">
@@ -199,7 +210,7 @@ class DepartmentsBoxTestCase(TestCase):
 
                     </div>
                 </div>
-                </div></div></div></div></div></div>'''
+                </div></div></div></div></div></div>'''.format(*[dep.logo.url for dep in self.departments])
             ).text.replace('\n', '').replace('\t', '').replace(' ', '')
         )
 
@@ -210,7 +221,8 @@ class DepartmentsBoxTestCase(TestCase):
         # import pdb; pdb.set_trace()
         self.assertEqual(
             BeautifulSoup(tagcontent).text.replace('\n', '').replace('\t', '').replace(' ', ''),
-            BeautifulSoup(f'''
+            BeautifulSoup(
+                '''
                 <div class="our-departments amp-item"><div class="container"><div class="mdl-grid">
                     <div class="mdl-cell mdl-cell--12-col">
                         <div class="our-departments-wrap">
@@ -222,7 +234,7 @@ class DepartmentsBoxTestCase(TestCase):
                                     <div class="our-departments-cont">
                                         <header class="entry-header d-flex
                                          flex-wrap align-items-center amp-item">
-                                            <amp-img src="{self.departments[0].logo.url}"
+                                            <amp-img src="{}"
                                              width="36" height="36" layout="fixed" alt=""></amp-img>
                                             <h3>Cardioology</h3>
                                         </header>
@@ -238,7 +250,7 @@ class DepartmentsBoxTestCase(TestCase):
                                     <div class="our-departments-cont">
                                         <header class="entry-header d-flex flex-wrap
                                          align-items-center amp-item">
-                                            <amp-img src="{self.departments[1].logo.url}" width="36"
+                                            <amp-img src="{}" width="36"
                                              height="36" layout="fixed" alt=""></amp-img>
                                             <h3>Gastroenterology</h3>
                                         </header>
@@ -254,7 +266,7 @@ class DepartmentsBoxTestCase(TestCase):
                                     <div class="our-departments-cont">
                                         <header class="entry-header d-flex flex-wrap
                                          align-items-center amp-item">
-                                            <amp-img src="{self.departments[2].logo.url}" width="36"
+                                            <amp-img src="{}" width="36"
                                              height="36" layout="fixed" alt=""></amp-img>
                                             <h3>Medical Lab</h3>
                                         </header>
@@ -270,7 +282,7 @@ class DepartmentsBoxTestCase(TestCase):
                                     <div class="our-departments-cont">
                                         <header class="entry-header d-flex
                                          flex-wrap align-items-center amp-item">
-                                            <amp-img src="{self.departments[3].logo.url}" width="36"
+                                            <amp-img src="{}" width="36"
                                              height="36" layout="fixed" alt=""></amp-img>
                                             <h3>Dental Care</h3>
                                         </header>
@@ -286,7 +298,7 @@ class DepartmentsBoxTestCase(TestCase):
                                     <div class="our-departments-cont">
                                         <header class="entry-header d-flex flex-wrap
                                          align-items-center amp-item">
-                                            <amp-img src="{self.departments[4].logo.url}"
+                                            <amp-img src="{}"
                                              width="36" height="36" layout="fixed" alt=""></amp-img>
                                             <h3>Surgery</h3>
                                         </header>
@@ -302,7 +314,7 @@ class DepartmentsBoxTestCase(TestCase):
                                     <div class="our-departments-cont">
                                         <header class="entry-header d-flex flex-wrap
                                          align-items-center amp-item">
-                                            <amp-img src="{self.departments[5].logo.url}" width="36"
+                                            <amp-img src="{}" width="36"
                                              height="36" layout="fixed" alt=""></amp-img>
                                             <h3>Neurology</h3>
                                         </header>
@@ -318,7 +330,7 @@ class DepartmentsBoxTestCase(TestCase):
                                     <div class="our-departments-cont">
                                         <header class="entry-header d-flex flex-wrap
                                          align-items-center amp-item">
-                                            <amp-img src="{self.departments[6].logo.url}"
+                                            <amp-img src="{}"
                                              width="36" height="36" layout="fixed" alt=""></amp-img>
                                             <h3>Orthopaedy</h3>
                                         </header>
@@ -334,7 +346,7 @@ class DepartmentsBoxTestCase(TestCase):
                                     <div class="our-departments-cont">
                                         <header class="entry-header d-flex flex-wrap
                                          align-items-centeramp-item">
-                                            <amp-img src="{self.departments[7].logo.url}"
+                                            <amp-img src="{}"
                                              width="36" height="36" layout="fixed" alt=""></amp-img>
                                             <h3>Pediatry</h3>
                                         </header>
@@ -350,7 +362,7 @@ class DepartmentsBoxTestCase(TestCase):
                                     <div class="our-departments-cont">
                                         <header class="entry-header d-flex
                                          flex-wrap align-items-center amp-item">
-                                            <amp-img src="{self.departments[8].logo.url}"
+                                            <amp-img src="{}"
                                             width="36" height="36" layout="fixed" alt=""></amp-img>
                                             <h3>Ophthalmology</h3>
                                         </header>
@@ -363,7 +375,6 @@ class DepartmentsBoxTestCase(TestCase):
 
                             </div>
                         </div>
-                    </div></div></div></div>'''
+                    </div></div></div></div>'''.format(*[dep.logo.url for dep in self.departments])
             ).text.replace('\n', '').replace('\t', '').replace(' ', '')
         )
-

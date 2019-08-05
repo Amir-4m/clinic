@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# vim: ai ts=4 sts=4 et sw=4
+
 from django.template import Library
 from django.utils.safestring import mark_safe
 from django.conf import settings
@@ -12,36 +15,38 @@ def testimonials_css_tags(is_amp=False, bg_image=False):
     testimonials = TestimonialService.get_active_testimonials()
     styles = ''
     for i, item in enumerate(testimonials):
-        styles += f"""
+        styles += '''
         .testimonial-slider .swiper-pagination-bullet:nth-of-type({i + 1}) {{
-            background: url({item.user_avatar.url});
+            background: url({});
             background-size: cover;
         }}
-        """
+        '''.format(item.user_avatar.url)
 
     if bg_image:
-        styles += f'''
+        styles += '''
         .testimonial-section::before {{
-            background: url({bg_image}) no-repeat right center;
+            background: url({}) no-repeat right center;
             background-size: cover;
         }}
-        '''
+        '''.format(bg_image)
 
-    return mark_safe(f'''
-        <link rel="stylesheet" href="{ settings.STATIC_URL }testimonials/css/testimonials.css">
+    return mark_safe('''
+        <link rel="stylesheet" href="{}testimonials/css/testimonials.css">
         <style>{ styles }</style>
-    ''')
+        '''.format(settings.STATIC_URL))
 
 
 @register.simple_tag
 def testimonials_js_tags(is_amp=False):
     if is_amp:
         return mark_safe(
-            f'<script async custom-element="amp-testimonials" '
+            '<script async custom-element="amp-testimonials" '
             'src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js"></script>'
         )
     return mark_safe(
-        f'<script lang="javascript" src="{settings.STATIC_URL}testimonials/js/testimonials.js"></script>'
+        '<script lang="javascript" src="{}testimonials/js/testimonials.js"></script>'.format(
+            settings.STATIC_URL
+        )
     )
 
 

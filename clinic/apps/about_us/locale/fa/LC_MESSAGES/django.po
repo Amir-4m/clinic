@@ -1,0 +1,115 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-08-02 15:11+0430\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: models.py:10
+msgid "History"
+msgstr "تاریخچه"
+
+#: models.py:11
+msgid "Histories"
+msgstr "تاریخچه"
+
+#: models.py:13 models.py:29 models.py:43 models.py:58
+msgid "Created"
+msgstr "ایجاد شده"
+
+#: models.py:14 models.py:30 models.py:44 models.py:59
+msgid "Updated"
+msgstr "بروز شده"
+
+#: models.py:15 models.py:45
+msgid "Title"
+msgstr "عنوان"
+
+#: models.py:16
+msgid "Text"
+msgstr "مضمون"
+
+#: models.py:17
+msgid "Image"
+msgstr "تصویر"
+
+#: models.py:18
+msgid "Details Link"
+msgstr "لینک جزئیات"
+
+#: models.py:26
+msgid "Faq"
+msgstr "پرسش و پاسخ"
+
+#: models.py:27
+msgid "Faqs"
+msgstr "پرسشها و پاسخها"
+
+#: models.py:31
+msgid "Question"
+msgstr "سوال"
+
+#: models.py:32
+msgid "Answer"
+msgstr "جواب"
+
+#: models.py:40
+msgid "Stuff"
+msgstr "راهکار"
+
+#: models.py:41
+msgid "Stuffs"
+msgstr "راهکار ها"
+
+#: models.py:46
+msgid "Description"
+msgstr "توضیح"
+
+#: models.py:47
+msgid "Logo"
+msgstr "لوگو"
+
+#: models.py:55
+msgid "Clinic Team Member"
+msgstr "عضو کلینیک"
+
+#: models.py:56
+msgid "Clinic Team Members"
+msgstr "اعضای کلینیک"
+
+#: models.py:60
+msgid "Name"
+msgstr "نام"
+
+#: models.py:61
+msgid "Degree"
+msgstr "درجه"
+
+#: models.py:62
+msgid "Avatar Image"
+msgstr "تصویر آواتار"
+
+#: templates/about_us/about_us.html:30 templates/about_us/amp/about_us.html:25
+msgid "Read More"
+msgstr "بیشتر بخوانید"
+
+#: templates/about_us/about_us.html:47 templates/about_us/amp/about_us.html:42
+msgid "Faq &amp; Stuff"
+msgstr "پرسش و راهکار"
+
+#: templates/about_us/about_us.html:82 templates/about_us/amp/about_us.html:77
+msgid "The Medical Team"
+msgstr "تیم پزشکی"

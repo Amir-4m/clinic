@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# vim: ai ts=4 sts=4 et sw=4
+
 from django.shortcuts import render
 from django.conf import settings
 
@@ -13,7 +16,11 @@ def home(request, is_amp=False):
             'page': 'home',
             'extend_header': True,
             'header_carousel': header_carousel,
-            'testimonials_bg_image': f'{settings.STATIC_URL}site/images/theme/testimonial-bg.jpg',
-            'departmentsbox_bg_image': f'{settings.STATIC_URL}site/images/theme/departments-bg.jpg',
+            'testimonials_bg_image': '{}site/images/theme/testimonial-bg.jpg'.format(
+                settings.STATIC_URL
+            ),
+            'departmentsbox_bg_image': '{}site/images/theme/departments-bg.jpg'.format(
+                settings.STATIC_URL
+            ),
         }
     )

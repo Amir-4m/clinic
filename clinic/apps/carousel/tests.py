@@ -1,5 +1,9 @@
+#!/usr/bin/env python
+# vim: ai ts=4 sts=4 et sw=4
+
 import os
 import uuid
+from unittest import skipIf
 
 from PIL import Image
 import bs4
@@ -12,11 +16,17 @@ from .services import CarouselService
 from .apps import CarouselConfig
 
 
+@skipIf(
+    os.environ.get('DJANGO_SETTINGS_MODULE') != 'clinic.settings.web',
+    'This tests only run if ssettings module set as "clinic.settings.web"'
+)
 class CarouselTestCase(TestCase):
     def setUp(self):
         self.carousel_slug = 'carousel-test'
         self.carousel = CarouselService.create_carousel(slug=self.carousel_slug)
-        image_file = open(f'{settings.MEDIA_ROOT}/{uuid.uuid4().hex}.png', 'wb+')
+        image_file = open(
+            '{}/{}.png'.format(settings.MEDIA_ROOT, uuid.uuid4().hex), 'wb+'
+        )
         pic = Image.new('RGB', (70, 50))
         pic.save(image_file)
         for i in range(1, 4):
@@ -24,8 +34,8 @@ class CarouselTestCase(TestCase):
             image = File(image_file)
             CarouselService.add_slide(
                 self.carousel,
-                f'test slide {i}',
-                f'test content {i}',
+                'test slide %d' % i,
+                'test content %d' % i,
                 image,
                 None,
                 priority=3 - i
@@ -85,18 +95,20 @@ class CarouselTestCase(TestCase):
         self.assertEqual(
             csstag.replace('    ', '').replace('\n', '').strip(),
             (
-                '<link rel="stylesheet" href="/static/carousel/css/carousel.css">'
-                '<style>'
-                '.slide-bg-0 {'
-                f'background-image: url({self.carousel.slides.all()[0].image.url});'
-                '}'
-                '.slide-bg-1 {'
-                f'background-image: url({self.carousel.slides.all()[1].image.url});'
-                '}'
-                '.slide-bg-2 {'
-                f'background-image: url({self.carousel.slides.all()[2].image.url});'
-                '}'
-                '</style>'
+                (
+                    '<link rel="stylesheet" href="/static/carousel/css/carousel.css">'
+                    '<style>'
+                    '.slide-bg-0 {'
+                    'background-image: url({});'
+                    '}'
+                    '.slide-bg-1 {'
+                    'background-image: url({});'
+                    '}'
+                    '.slide-bg-2 {'
+                    'background-image: url({});'
+                    '}'
+                    '</style>'
+                ).format(*[s.image.url for s in self.carousel.slides.all()])
             )
         )
 
@@ -115,23 +127,25 @@ class CarouselTestCase(TestCase):
         self.assertEqual(
             csstag.replace('    ', '').replace('\n', '').strip(),
             (
-                '<style>'
-                '.slide-bg-0 {'
-                f'background-image: url({self.carousel.slides.all()[0].image.url});'
-                'background-size: cover;'
-                'background-position: center;'
-                '}'
-                '.slide-bg-1 {'
-                f'background-image: url({self.carousel.slides.all()[1].image.url});'
-                'background-size: cover;'
-                'background-position: center;'
-                '}'
-                '.slide-bg-2 {'
-                f'background-image: url({self.carousel.slides.all()[2].image.url});'
-                'background-size: cover;'
-                'background-position: center;'
-                '}'
-                '</style>'
+                (
+                    '<style>'
+                    '.slide-bg-0 {'
+                    'background-image: url({});'
+                    'background-size: cover;'
+                    'background-position: center;'
+                    '}'
+                    '.slide-bg-1 {'
+                    'background-image: url({});'
+                    'background-size: cover;'
+                    'background-position: center;'
+                    '}'
+                    '.slide-bg-2 {'
+                    'background-image: url({});'
+                    'background-size: cover;'
+                    'background-position: center;'
+                    '}'
+                    '</style>'
+                ).format([s.image.url for s in self.carousel.slides.all()])
             )
         )
 
