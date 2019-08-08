@@ -7,6 +7,7 @@ from unittest import skipIf
 from django.test import TestCase
 from django.conf import settings
 from django.template import Template, Context
+from django.utils.safestring import mark_safe
 
 from .apps import TestimonialsConfig
 from .services import TestimonialService
@@ -25,6 +26,15 @@ class TestimonialsTestCase(TestCase):
 
     def test_app_config(self):
         self.assertEqual(TestimonialsConfig.name, 'testimonials')
+
+    def test_testimonials_to_string_value(self):
+        self.assertEqual(self.testimonials[0].user_full_name, str(self.testimonials[0]))
+
+    def test_testimonials_preview(self):
+        self.assertEqual(
+            self.testimonials[0].preview,
+            mark_safe('<img src="{}" width="48">'.format(self.testimonials[0].user_avatar.url))
+        )
 
     def test_testimonials_css_tags(self):
         context = Context()
@@ -55,7 +65,7 @@ class TestimonialsTestCase(TestCase):
                     background-size: cover;
                 }}
                 </style>
-            '''.format(t.user_avatar.url for t in self.testimonials).replace('    ', '').strip()
+            '''.format(*[t.user_avatar.url for t in self.testimonials]).replace('    ', '').strip()
         )
 
         context = Context()
@@ -443,6 +453,6 @@ class TestimonialsTestCase(TestCase):
                 </div>
             </section>
         '''.format(
-                [t.user_avatar.url for t in self.testimonials]
+                *[t.user_avatar.url for t in self.testimonials]
             ).replace('    ', '').replace('\n', '').replace('\t', '').strip()
         )

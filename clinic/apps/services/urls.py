@@ -7,5 +7,5 @@ from . import views
 
 
 urlpatterns = [
-    re_path(r'^(?P<is_amp>amp)?/$', views.show_services, name="services"),
+    re_path(r'^(?P<is_amp>amp)?/?$', views.show_services, name="services"),
 ]

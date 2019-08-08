@@ -28,16 +28,18 @@ class ContactTestCase(TestCase):
 
     def test_post_contact_form_by_valid_data(self):
         self.assertEqual(Message.objects.all().count(), 0)
+        subject = 'test subject'
         self.client.post(
             reverse('contact'),
             data=dict(
                 name='test user',
                 email='fake@test.com',
-                subject='test subject',
+                subject=subject,
                 message='test message text'
             )
         )
         self.assertEqual(Message.objects.all().count(), 1)
+        self.assertEqual(subject, str(Message.objects.first()))
 
     def test_post_contact_form_by_invalid_data(self):
         self.assertEqual(Message.objects.all().count(), 0)

@@ -6,6 +6,7 @@ from unittest import skipIf
 
 from django.test import TestCase
 from django.urls import reverse
+from django.utils.safestring import mark_safe
 
 from .apps import ServicesConfig
 from .models import Article, DescriptionTab
@@ -36,3 +37,10 @@ class ServicesTestCase(TestCase):
             descriptiontab.name, descriptiontab.title
         )
         self.assertEqual(dt_str, str(descriptiontab))
+
+    def test_descriptiontab_preview(self):
+        descriptiontab = DescriptionTab.objects.first()
+        self.assertEqual(
+            descriptiontab.preview,
+            mark_safe('<img src="{}" width="48">'.format(descriptiontab.image.url))
+        )

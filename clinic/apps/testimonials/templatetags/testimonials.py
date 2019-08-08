@@ -16,11 +16,11 @@ def testimonials_css_tags(is_amp=False, bg_image=False):
     styles = ''
     for i, item in enumerate(testimonials):
         styles += '''
-        .testimonial-slider .swiper-pagination-bullet:nth-of-type({i + 1}) {{
+        .testimonial-slider .swiper-pagination-bullet:nth-of-type({}) {{
             background: url({});
             background-size: cover;
         }}
-        '''.format(item.user_avatar.url)
+        '''.format(i + 1, item.user_avatar.url)
 
     if bg_image:
         styles += '''
@@ -32,8 +32,8 @@ def testimonials_css_tags(is_amp=False, bg_image=False):
 
     return mark_safe('''
         <link rel="stylesheet" href="{}testimonials/css/testimonials.css">
-        <style>{ styles }</style>
-        '''.format(settings.STATIC_URL))
+        <style>{}</style>
+        '''.format(settings.STATIC_URL, styles))
 
 
 @register.simple_tag

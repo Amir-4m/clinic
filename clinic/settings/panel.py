@@ -55,8 +55,6 @@ INSTALLED_APPS += (
     'django.contrib.admin',
 
     # External Apps
-    'ckeditor',
-    'ckeditor_uploader',
     'colorfield',
     'captcha',
 

@@ -320,7 +320,9 @@ INSTALLED_APPS = (
 
     # External Apps
     # To Persist Dynamic Settings
-    'constance',
+    'constance.backends.database',
+    'ckeditor',
+    'ckeditor_uploader',
 
     # To configure Celery tasks from admin panel
     'django_celery_beat',
@@ -428,10 +430,10 @@ EMAIL_PORT = get_env_var('EMAIL_PORT', 587)
 # Whether to use a TLS (secure) connection when talking to the SMTP server.
 EMAIL_USE_TLS = get_env_var('EMAIL_USE_TLS', 'True') == 'True'
 
+CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
 CONSTANCE_ADDITIONAL_FIELDS = {
     'image_field': ['django.forms.ImageField', {}]
 }
-
 CONSTANCE_CONFIG = {
     'NAME': ('MedArt', 'Clinic Name'),
     'LOGO': ('logo.png', 'Clinic Logo', 'image_field'),

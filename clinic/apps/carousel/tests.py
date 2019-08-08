@@ -11,6 +11,7 @@ from django.core.files import File
 from django.conf import settings
 from django.test import TestCase
 from django.template import Context, Template
+from django.utils.safestring import mark_safe
 
 from .services import CarouselService
 from .apps import CarouselConfig
@@ -98,15 +99,15 @@ class CarouselTestCase(TestCase):
                 (
                     '<link rel="stylesheet" href="/static/carousel/css/carousel.css">'
                     '<style>'
-                    '.slide-bg-0 {'
+                    '.slide-bg-0 {{'
                     'background-image: url({});'
-                    '}'
-                    '.slide-bg-1 {'
+                    '}}'
+                    '.slide-bg-1 {{'
                     'background-image: url({});'
-                    '}'
-                    '.slide-bg-2 {'
+                    '}}'
+                    '.slide-bg-2 {{'
                     'background-image: url({});'
-                    '}'
+                    '}}'
                     '</style>'
                 ).format(*[s.image.url for s in self.carousel.slides.all()])
             )
@@ -129,23 +130,23 @@ class CarouselTestCase(TestCase):
             (
                 (
                     '<style>'
-                    '.slide-bg-0 {'
+                    '.slide-bg-0 {{'
                     'background-image: url({});'
                     'background-size: cover;'
                     'background-position: center;'
-                    '}'
-                    '.slide-bg-1 {'
+                    '}}'
+                    '.slide-bg-1 {{'
                     'background-image: url({});'
                     'background-size: cover;'
                     'background-position: center;'
-                    '}'
-                    '.slide-bg-2 {'
+                    '}}'
+                    '.slide-bg-2 {{'
                     'background-image: url({});'
                     'background-size: cover;'
                     'background-position: center;'
-                    '}'
+                    '}}'
                     '</style>'
-                ).format([s.image.url for s in self.carousel.slides.all()])
+                ).format(*[s.image.url for s in self.carousel.slides.all()])
             )
         )
 
@@ -155,3 +156,14 @@ class CarouselTestCase(TestCase):
         carousel_html = template.render(context)
         doc = bs4.BeautifulSoup(carousel_html)
         self.assertEqual(len(doc.select('.swiper-slide.hero-content-wrap')), 3)
+
+    def test_carousel_slide_to_string_value(self):
+        slide = self.carousel.slides.first()
+        self.assertEqual(slide.title, str(slide))
+
+    def test_carousel_slide_preview_value(self):
+        slide = self.carousel.slides.first()
+        self.assertEqual(
+            slide.preview,
+            mark_safe('<img src="{}">'.format(slide.image.url))
+        )

@@ -10,3 +10,4 @@ lxml
 django-htmlmin>=0.11.0
 django-cleanup
 django-constance==2.4.0
+django-picklefield==2.0

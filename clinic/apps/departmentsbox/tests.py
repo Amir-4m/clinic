@@ -4,10 +4,10 @@
 import os
 from unittest import skipIf
 
+from bs4 import BeautifulSoup
 from django.test import TestCase
 from django.template import Context, Template
-
-from bs4 import BeautifulSoup
+from django.utils.safestring import mark_safe
 
 from .apps import DepartmentsboxConfig
 from .services import DepartmentService
@@ -23,6 +23,15 @@ class DepartmentsBoxTestCase(TestCase):
 
     def test_departmentsbox_appconfig(self):
         self.assertEqual(DepartmentsboxConfig.name, 'departmentsbox')
+
+    def test_department_model_to_string_value(self):
+        self.assertEqual(self.departments[0].title, str(self.departments[0]))
+
+    def test_department_model_preview(self):
+        self.assertEqual(
+            self.departments[0].preview,
+            mark_safe('<img src="{}">'.format(self.departments[0].logo.url))
+        )
 
     def test_get_departmentsbox_css_tags(self):
         context = Context()
