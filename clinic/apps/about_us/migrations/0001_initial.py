@@ -19,7 +19,7 @@ def make_about_us_page_defaults(apps, schema_editor):
     db_alias = schema_editor.connection.alias
 
     if not os.path.exists(settings.MEDIA_ROOT):
-        os.mkdirs(settings.MEDIA_ROOT)
+        os.makedirs(settings.MEDIA_ROOT)
 
     # Initial History
     history_image = os.path.join(

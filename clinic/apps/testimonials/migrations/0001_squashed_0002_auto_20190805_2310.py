@@ -93,7 +93,7 @@ def initial_testimonials(apps, schema_editor):
         }
     ]
     if not os.path.exists(settings.MEDIA_ROOT):
-        os.mkdirs(settings.MEDIA_ROOT)
+        os.makedirs(settings.MEDIA_ROOT)
     for testimonial_info in info:
         avatar_media_name = os.path.join(
             settings.MEDIA_ROOT,

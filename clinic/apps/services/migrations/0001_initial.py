@@ -28,7 +28,7 @@ def initial_services_page(apps, schema_editor):
     )
 
     if not os.path.exists(settings.MEDIA_ROOT):
-        os.mkdirs(settings.MEDIA_ROOT)
+        os.makedirs(settings.MEDIA_ROOT)
 
     tab_image = os.path.join(
         os.path.dirname(os.path.dirname(__file__)),

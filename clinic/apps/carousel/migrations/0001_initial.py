@@ -18,7 +18,7 @@ def initial_slides(apps, schema_editor):
     Slide = apps.get_model("carousel", "Slide")
 
     if not os.path.exists(settings.MEDIA_ROOT):
-        os.mkdirs(settings.MEDIA_ROOT)
+        os.makedirs(settings.MEDIA_ROOT)
 
     image_media_name = os.path.join(
         settings.MEDIA_ROOT,

@@ -142,7 +142,7 @@ def initial_departments(apps, schema_editor):
         },
     ]
     if not os.path.exists(settings.MEDIA_ROOT):
-        os.mkdirs(settings.MEDIA_ROOT)
+        os.makedirs(settings.MEDIA_ROOT)
     for department_info in info:
         logo_media_name = os.path.join(
             settings.MEDIA_ROOT,
