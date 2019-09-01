@@ -43,7 +43,11 @@ class Slide(models.Model):
 
     @property
     def preview(self):
-        return mark_safe('<img src="{}">'.format(self.image.url))
+        return mark_safe('<img src="{}" width="48">'.format(self.image.url))
+
+    @property
+    def detail_preview(self):
+        return mark_safe('<img src="{}" width="320">'.format(self.image.url))
 
     def __str__(self):
         return self.title

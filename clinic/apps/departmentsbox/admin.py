@@ -4,12 +4,15 @@
 from django.contrib import admin
 
 from .models import Department
+from .forms import DepartmentAdminForm
 
 
 @admin.register(Department)
 class DepartmentAdmin(admin.ModelAdmin):
     model = Department
+    form = DepartmentAdminForm
     list_display = ['title', 'preview', 'created']
+    readonly_fields = ['preview']
     # list_display_links
     # list_filter
     # ordering

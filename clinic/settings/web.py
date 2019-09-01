@@ -65,8 +65,16 @@ INSTALLED_APPS += (
     'django_contrib.pagination',
     'django_contrib.breadcrumb',
     'django_contrib.social',
-    'django_contrib.lazy',
+    'captcha',
 )
+
+RECAPTCHA_PUBLIC_KEY = get_env_var('RECAPTCHA_PUBLIC_KEY', '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI')
+RECAPTCHA_PRIVATE_KEY = get_env_var('RECAPTCHA_PRIVATE_KEY', '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe')
+
+RECAPTCHA_V3_SITE_KEY = get_env_var('RECAPTCHA_V3_SITE_KEY', '')
+RECAPTCHA_V3_ACTION = get_env_var('RECAPTCHA_V3_ACTION', '')
+
+SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
 
 COMPRESS_ENABLED = get_env_var('COMPRESS_ENABLED', str(not DEBUG)) == 'True'
 

@@ -6,7 +6,7 @@
 }
 
 .testimonial-section h2 {
-    margin-bottom: 40px!important
+    margin-bottom: 40px
 }
 
 .testimonial-section::before {
@@ -45,7 +45,7 @@
     z-index: -1;
     width: 499px;
     height: 492px;
-    background: url(../images/theme/testimonial-content-bg.png) no-repeat
+    background: url(../images/testimonial-content-bg.png) no-repeat
 }
 
 .testimonial-slider .content-wrap {
@@ -68,7 +68,7 @@
     left: 0;
     width: 46px;
     height: 46px;
-    background: url(../images/theme/testimonial-p-bg.png) no-repeat
+    background: url(../images/testimonial-p-bg.png) no-repeat
 }
 
 .testimonial-slider .testimonial-user {
@@ -93,6 +93,7 @@
     border-radius: 50%;
     overflow: hidden;
     border: 2px solid #18a3eb;
+    margin-left: 0;
 }
 
 .testimonial-slider .user-avatar img {
@@ -104,7 +105,7 @@
 .swiper-pagination-wrap {
     position: absolute;
     left: 0;
-    bottom: 150px;
+    bottom: 180px;
     z-index: 99;
     width: 100%
 }
@@ -125,7 +126,7 @@
     }
 
     .swiper-pagination-wrap {
-        bottom: 30px
+        bottom: 230px
     }
 }
 
@@ -163,7 +164,7 @@
     width: 52px;
     height: 52px;
     margin: 0 8px;
-    opacity: 1!important;
+    opacity: 1;
 }
 
 .testimonial-slider .swiper-pagination-bullet-active {

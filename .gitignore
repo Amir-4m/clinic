@@ -173,3 +173,6 @@ id_rsa.pub
 build/
 /dist/
 logs/
+
+*.sublime-workspace
+*.sublime-project

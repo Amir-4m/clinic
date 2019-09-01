@@ -18,12 +18,16 @@ class History(models.Model):
     updated = models.DateTimeField(auto_now=True, verbose_name=_('Updated'))
     title = models.CharField(max_length=50, verbose_name=_('Title'))
     text = RichTextField(config_name='basic', verbose_name=_('Text'))
-    image = ImageField(validators=[MaxSizeValidator(1024)], verbose_name=_('Image'))
+    image = ImageField(validators=[MaxSizeValidator(1024 * 1024)], verbose_name=_('Image'))
     details_link = models.URLField(blank=True, null=True, verbose_name=_('Details Link'))
 
     @property
     def preview(self):
         return mark_safe('<img src="{}" width="48">'.format(self.image.url))
+
+    @property
+    def detail_preview(self):
+        return mark_safe('<img src="{}" width="320">'.format(self.image.url))
 
     def __str__(self):
         return self.title

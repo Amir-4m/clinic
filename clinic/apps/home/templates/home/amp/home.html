@@ -8,11 +8,6 @@
 	{% testimonials_css_tags bg_image=testimonials_bg_image %}
 {% endblock %}
 
-{% block extra_head %}
-{{ block.super }}
-<link rel="canonical" href="/">
-{% endblock %}
-
 {% block content %}
 {% comment %} Second Part Of Theme {% endcomment %}
 <div class="homepage-boxes">
@@ -37,7 +32,7 @@
 					<h2 class="d-flex align-items-center">{% trans "Emergency" %}</h2>
 					<div class="call-btn button gradient-bg">
 						<a class="d-flex justify-content-center align-items-center" href="#">
-							<amp-img src="{{ STATIC_URL }}site/images/theme/emergency-call.png" layout="fixed" width="24" height="24"></amp-img> {{ config.EMERGENCY_PHONE }}
+							<amp-img src="{{ STATIC_URL }}site/images/theme/emergency-call.png" layout="fixed" width="24" height="24"></amp-img> <span>{{ config.EMERGENCY_PHONE }}</span>
 						</a>
 					</div>
 					<p>{{ config.EMERGENCY_TEXT }}</p>

@@ -6,10 +6,11 @@ from django.contrib import admin
 from .models import Carousel, Slide
 
 
-class SlideTabularInlineAdmin(admin.TabularInline):
+class SlideStackedInlineAdmin(admin.StackedInline):
     model = Slide
 
     list_display = ['title', 'preview', 'created']
+    readonly_fields = ['detail_preview']
     # list_display_links
     # list_filter
     ordering = ['priority']
@@ -29,7 +30,7 @@ class SlideTabularInlineAdmin(admin.TabularInline):
 @admin.register(Carousel)
 class CarouselAdmin(admin.ModelAdmin):
     model = Carousel
-    inlines = [SlideTabularInlineAdmin]
+    inlines = [SlideStackedInlineAdmin]
 
     list_display = ['slug', 'created']
     # list_display_links
@@ -45,3 +46,8 @@ class CarouselAdmin(admin.ModelAdmin):
     # raw_id_fields
     show_full_result_count = True
     sortable_by = ['slug']
+
+    def get_readonly_fields(self, request, obj=None):
+        if obj:
+            return self.readonly_fields + ('slug',)
+        return self.readonly_fields

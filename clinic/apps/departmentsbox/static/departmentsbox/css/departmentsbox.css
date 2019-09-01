@@ -35,7 +35,26 @@
 }
 
 @media screen and (max-width: 480px) {
-    
+    .our-departments .our-departments-wrap > h2 {
+        font-size: 48px;
+    }
+
+    .our-departments .our-departments-wrap {
+        padding: 4px;
+    }
+
+    .our-departments > .container {
+        padding-right: 0;
+    }
+
+    .our-departments > .container > .mdl-grid {
+        margin: 0;
+        padding: 0;
+    }
+    .our-departments > .container > .mdl-grid > div {
+        margin: 0;
+        padding: 0;
+    }
 }
 
 .our-departments-wrap h2 {
@@ -56,6 +75,10 @@
 
 .our-departments-cont .entry-header img {
     margin-right: 8px;
+    width: 32px;
+    height: 32px;
+    margin-top: 5px;
+}
 }
 
 .our-departments.amp-item .our-departments-wrap {

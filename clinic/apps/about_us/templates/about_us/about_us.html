@@ -1,10 +1,6 @@
 {% extends "clinic/layout.html" %}
 {% load i18n staticfiles %}
 
-{% block extra_head %}
-{{ block.super }}
-<link rel="amphtml" href="/about/amp/">
-{% endblock %}
 
 {% block css %}
 {{ block.super }}
@@ -56,10 +52,10 @@
 			<div class="mdl-cell--12-col mdl-cell--6-col-desktop mt-5 mt-lg-0">
 				<div class="mdl-grid">
 					{% for stuff in stuffs %}
-					<div class="mdl-cell--6-col mdl-cell--6-col-tablet mdl-cell--6-col-phone">
-						<div class="professional-box">
+					<div class="mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--4-col-tablet mdl-cell--6-col-phone">
+						<div class="stuff-box">
 							<h2 class="d-flex align-items-center">{{ stuff.title }}</h2>
-							<img src="{{ stuff.logo.url }}" alt="">
+							<img width="50" height="50" layout="fixed" src="{{ stuff.logo.url }}" alt=""></img>
 							<p>{{ stuff.description }}</p>
 						</div>
 					</div>
@@ -79,7 +75,7 @@
 				<h2>{% trans "The Medical Team" %}</h2>
 			</div>
 			{% for member in members %}
-			<div class="mdl-cell mdl-cell--12-col-phone mdl-cell--6-col-tablet mdl-cell--3-col-desktop">
+			<div class="mdl-cell mdl-cell--12-col-phone mdl-cell--4-col-tablet mdl-cell--3-col-desktop">
 				<div class="medical-team-wrap">
 					<img src="{{ member.avatar.url }}" alt="">
 					<h4>{{ member.name }}</h4>

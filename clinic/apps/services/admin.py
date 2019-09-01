@@ -29,6 +29,7 @@ class ArticleAdmin(admin.ModelAdmin):
 class DescriptionTabAdmin(admin.ModelAdmin):
     model = DescriptionTab
     list_display = ['title', 'name', 'preview', 'created']
+    readonly_fields = ['detail_preview']
     # list_display_links
     # list_filter
     # ordering

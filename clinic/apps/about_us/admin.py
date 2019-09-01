@@ -4,12 +4,14 @@
 from django.contrib import admin
 
 from .models import History, Faq, Stuff, ClinicTeamMember
+from .forms import FaqAdminForm, StuffAdminForm
 
 
 @admin.register(History)
 class HistoryAdmin(admin.ModelAdmin):
     model = History
     list_display = ['title', 'preview', 'created']
+    readonly_fields = ['detail_preview']
     # list_display_links
     # list_filter
     # ordering
@@ -28,6 +30,7 @@ class HistoryAdmin(admin.ModelAdmin):
 @admin.register(Faq)
 class FaqAdmin(admin.ModelAdmin):
     model = Faq
+    form = FaqAdminForm
     list_display = ['question', 'created']
     # list_display_links
     # list_filter
@@ -47,7 +50,9 @@ class FaqAdmin(admin.ModelAdmin):
 @admin.register(Stuff)
 class StuffAdmin(admin.ModelAdmin):
     model = Stuff
+    form = StuffAdminForm
     list_display = ['title', 'preview', 'created']
+    readonly_fields = ['preview']
     # list_display_links
     # list_filter
     # ordering
@@ -67,6 +72,7 @@ class StuffAdmin(admin.ModelAdmin):
 class ClinicTeamMemberAdmin(admin.ModelAdmin):
     model = ClinicTeamMember
     list_display = ['name', 'degree', 'preview', 'created']
+    readonly_fields = ['preview']
     # list_display_links
     # list_filter
     # ordering

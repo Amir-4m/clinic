@@ -10,6 +10,7 @@ from .models import Testimonial
 class TestimonialAdmin(admin.ModelAdmin):
     model = Testimonial
     list_display = ['user_full_name', 'preview', 'created']
+    readonly_fields = ['preview']
     # list_display_links
     # list_filter
     # ordering

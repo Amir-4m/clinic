@@ -32,6 +32,7 @@
 .accordion-wrap .entry-title .arrow-d {
     position: absolute;
     right: 40px;
+    margin-top: -5px;
 }
 
 .accordion-wrap .entry-title .arrow-r::before,
@@ -104,17 +105,23 @@
     color: #fff
 }
 
-.professional-box,
-.quality-box {
+
+@media screen and (max-width:768px) {
+    .stuff-box:nth-last-child(-n+1) {
+        margin-left: 32px;
+    }
+}
+
+.stuff-box {
     position: relative;
     padding: 24px;
     border-radius: 20px;
     border: 2px solid #fff;
-    text-align: center
+    text-align: center;
+    margin: 20px 0;
 }
 
-.professional-box h2,
-.quality-box h2 {
+.stuff-box h2 {
     position: absolute;
     top: -48px;
     left: -2px;
@@ -127,18 +134,15 @@
     background: #fff
 }
 
-body.amp .professional-box img,
-.quality-box img {
+body.amp .stuff-box img {
     margin: 4px 0
 }
 
-.professional-box img,
-.quality-box img {
+.stuff-box img {
     margin: 24px 0
 }
 
-.professional-box p,
-.quality-box p {
+.stuff-box p {
     margin-bottom: 0;
     font-size: 14px;
     line-height: 2;

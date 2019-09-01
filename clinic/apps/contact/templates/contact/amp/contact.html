@@ -1,13 +1,10 @@
 {% extends "clinic/layout.html" %}
 {% load i18n staticfiles %}
 
-{% block extra_head %}
-{{ block.super }}
-<link rel="canonical" href="/contact/">
-{% endblock %}
-
 {% block extra_js %}
 	{{ block.super }}
+	<script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
+	<script async custom-element="amp-recaptcha-input" src="https://cdn.ampproject.org/v0/amp-recaptcha-input-0.1.js"></script>
 	<script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>
 {% endblock %}
 
@@ -36,7 +33,7 @@
 					<h2 class="d-flex align-items-center">{% trans "Emergency" %}</h2>
 					<div class="call-btn button gradient-bg">
 						<a class="d-flex justify-content-center align-items-center" href="#">
-							<amp-img width="32" height="32" layout="fixed" src="{{ STATIC_URL }}site/images/theme/emergency-call.png"></amp-img> {{ config.EMERGENCY_PHONE }}
+							<amp-img width="32" height="32" layout="fixed" src="{{ STATIC_URL }}site/images/theme/emergency-call.png"></amp-img> <span>{{ config.EMERGENCY_PHONE }}</span>
 						</a>
 					</div>
 					<p>{{ config.EMERGENCY_TEXT|safe }}</p>
@@ -49,26 +46,45 @@
 {% comment %} Contact Form {% endcomment %}
 <div class="contact-form">
 	<div class="container">
-		<form method="post" action='.'>
+		<form method="post" action-xhr='.'>
 			<div class="mdl-grid">
 				<div class="mdl-cell mdl-cell--12-col">
-					<h2>Get in Touch</h2>
+					<h2>{% trans "Get in Touch" %}</h2>
 				</div>
+				{% if message %}
+				<div class="success-message mdl-cell mdl-cell--12-col">
+					<div>{{ message }}</div>
+				</div>
+				{% endif %}
 				<div class="mdl-cell mdl-cell--4-col mdl-cell--12-col-phone col-12  col-md-4">
-					<input type="text" name="name" placeholder="Name">
+					{{ form.name }}
+					{{ form.name.errors }}
 				</div>
 				<div class="mdl-cell mdl-cell--4-col mdl-cell--12-col-phone">
-					<input type="email" name="email" placeholder="E-mail">
+					{{ form.email }}
+					{{ form.email.errors }}
 				</div>
 				<div class="mdl-cell mdl-cell--4-col mdl-cell--12-col-phone">
-					<input type="text" name="subject" placeholder="Subject">
+					{{ form.subject }}
+					{{ form.subject.errors }}
 				</div>
 				<div class="mdl-cell mdl-cell--12-col">
-					<textarea name="name" name="message" rows="12" cols="80" placeholder="Message"></textarea>
+					{{ form.message }}
+					{{ form.message.errors }}
 				</div>
 				<div class="mdl-cell mdl-cell--12-col">
-					<input type="submit" value="Send Message" class="button gradient-bg">
+					<amp-recaptcha-input layout="nodisplay"
+				      name="recaptcha_token"
+				      data-sitekey="{{ recaptcha_v3_site_key }}"
+				      data-action="{{ recaptcha_v3_action }}">
+				    </amp-recaptcha-input>
 				</div>
+				<div class="mdl-cell mdl-cell--12-col">
+					<input type="submit" name="" value="Send Message" class="button gradient-bg">
+				</div>
+			</div>
+			<div submit-success class="success-message mdl-cell mdl-cell--12-col">
+				{% trans "Your message registered successfuly" %}
 			</div>
 		</form>
 	</div>
@@ -81,7 +97,7 @@
 	<div class="mdl-grid">
 		<div class="mdl-cell mdl-cell--12-col">
 			<div class="contact-page-map">
-				<amp-iframe width="100" height="60" layout="responsive" id="gmap_canvas" src="https://maps.google.com/maps?q=university%20of%20san%20francisco&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=&amp;output=embed" scrolling="no" frameborder="0"></amp-iframe>
+				<amp-iframe width="100" height="60" layout="responsive" id="gmap_canvas" sandbox="allow-scripts allow-same-origin allow-popups" src="{{ config.MAP }}" scrolling="no" frameborder="0"></amp-iframe>
 			</div>
 		</div>
 	</div>

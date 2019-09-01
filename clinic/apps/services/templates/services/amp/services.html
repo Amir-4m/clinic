@@ -1,11 +1,6 @@
 {% extends "clinic/layout.html" %}
 {% load i18n staticfiles departmentsbox %}
 
-{% block extra_head %}
-{{ block.super }}
-<link rel="canonical" href="/services/">
-{% endblock %}
-
 {% block css %}
 	{{ block.super }}
 	{% departmentsbox_css_tags is_amp bg_image=departmentsbox_bg_image %}
@@ -48,19 +43,24 @@
 		<div class="mdl-cell mdl-cell--12-col">
 			<div class="services-tabs">
 				<div class="tabs">
+     				<amp-state id="tabProps">
+     					<script type="application/json">
+     						{ 
+     							"visibleTab": 1
+     						}
+     					</script>
+     				</amp-state>
 					<ul class="tabs-nav d-flex flex-wrap">
 						{% for desc in descriptions_tabs %}
-						<li role="tab" tabindex="{{ forloop.counter }}" [class]="visibleTab == {{ forloop.counter0 }} ? 'tab-nav d-flex active' : 'tab-nav d-flex'"  class="tab-nav d-flex justify-content-center align-items-center{% if forloop.counter == 1 %} active{% endif %}" on="tap:AMP.setState({visibleTab: {{ forloop.counter0 }} })">{{ desc.name }}</li>
+						<li role="tab" tabindex="{{ forloop.counter }}" [class]="tabProps.visibleTab == {{ forloop.counter0 }} ? 'tab-nav d-flex active' : 'tab-nav d-flex'"  class="tab-nav d-flex justify-content-center align-items-center{% if forloop.counter == 1 %} active{% endif %}" on="tap:AMP.setState({tabProps.visibleTab: {{ forloop.counter0 }} })">{{ desc.name }}</li>
 						{% endfor %}
 					</ul>
 					<div class="tabs-container">
 						{% for desc in descriptions_tabs %}
-						<div [class]="visibleTab == {{ forloop.counter0 }}? 'tab-content tab-content-active mdl-grid' : 'tab-content mdl-grid'" class="tab-content{% if forloop.counter == 1 %} tab-content-active{% endif %}">
-							<amp-img src="{{ desc.image.url }}" width="100" height="60" layout="responsive" class="mdl-cell mdl-cell--12-col-phone mdl-cell--12-col-tablet mdl-cell--6-col-desktop"></amp-img>
-							<div class="mdl-cell mdl-cell--12-col-phone mdl-cell--12-col-tablet mdl-cell--6-col-desktop">
-								<h4>{{ desc.title }}</h4>
-								<p>{{ desc.description|safe }}</p>
-							</div>
+						<div [class]="tabProps.visibleTab == {{ forloop.counter0 }} ? 'tab-content tab-content-active mdl-grid' : 'tab-content mdl-grid'" class="tab-content{% if forloop.counter == 1 %} tab-content-active{% endif %}">
+							<amp-img src="{{ desc.image.url }}" width="100" height="60" layout="responsive" class="mdl-cell mdl-cell--12-col-phone mdl-cell--6-col-tablet mdl-cell--6-col-desktop"></amp-img>
+							<h4>{{ desc.title }}</h4>
+							<p>{{ desc.description|safe }}</p>
 						</div>
 						{% endfor %}
 					</div>

@@ -1,3 +1,15 @@
 .tab-content.tab-content-active {
-	display: flex;
+	display: block;
+}
+
+.tabs-container img {
+	height: max-content;
+}
+
+.tab-content img {
+    float: left;
+    margin: 0 32px 32px 0;
+}
+img {
+    vertical-align: baseline;
 }
