@@ -346,9 +346,9 @@ INSTALLED_APPS = (
 if DEBUG:  # pragma: no cover
     INSTALLED_APPS += ('django_extensions',)
 
-UPLOAD_PATH = get_env_var('UPLOAD_PATH', os.apth.join(MEDIA_ROOT, 'ups/'))
+UPLOAD_PATH = get_env_var('UPLOAD_PATH', os.path.join(MEDIA_ROOT, 'ups/'))
 
-CKEDITOR_UPLOAD_PATH = get_env_var('CKEDITOR_UPLOAD_PATH', os.apth.join(MEDIA_ROOT, 'ck_ups/'))
+CKEDITOR_UPLOAD_PATH = get_env_var('CKEDITOR_UPLOAD_PATH', os.path.join(MEDIA_ROOT, 'ck_ups/'))
 CKEDITOR_IMAGE_BACKEND = 'pillow'
 CKEDITOR_ALLOW_NONIMAGE_FILES = False
 CKEDITOR_CONFIGS = {

@@ -3,12 +3,11 @@
 
 from django.contrib import admin
 
-from .models import Department
+from .models import Department, DepartmentGroup
 from .forms import DepartmentAdminForm
 
 
-@admin.register(Department)
-class DepartmentAdmin(admin.ModelAdmin):
+class DepartmentnlineAdmin(admin.StackedInline):
     model = Department
     form = DepartmentAdminForm
     list_display = ['title', 'preview', 'created']
@@ -26,3 +25,14 @@ class DepartmentAdmin(admin.ModelAdmin):
     # raw_id_fields
     show_full_result_count = True
     sortable_by = ['title']
+
+    extra = 1
+
+
+@admin.register(DepartmentGroup)
+class DepartmentGroupAdmin(admin.ModelAdmin):
+    model = DepartmentGroup
+
+    list_display = ['slug', 'title']
+    fields = ['slug', 'title']
+    inlines = [DepartmentnlineAdmin]

@@ -1,9 +1,11 @@
+{% load i18n %}
+
 <div class="our-departments">
 	<div class="container">
 		<div class="mdl-grid">
 			<div class="mdl-cell mdl-cell--12-col">
 				<div class="our-departments-wrap">
-					<h2>Our Departments</h2>
+					<h2>{{ group.title }}</h2>
 					<div class="mdl-grid">
 						{% for department in departments %}
 						<div class="mdl-cell mdl-cell--12-col mdl-cell--4-col-desktop mdl-cell--4-col-tablet">
@@ -15,9 +17,11 @@
 								<div class="entry-content">
 									<p>{{ department.descriptions }}</p>
 								</div>
-								{% comment %}<footer class="entry-footer">
-									<a href="#">read more</a>
-								</footer>{% endcomment %}
+								{% if department.link %}
+								<footer class="entry-footer">
+									<a href="{{ department.link }}">{% trans "read more" %}</a>
+								</footer>
+								{% endif %}
 							</div>
 						</div>
 						{% endfor %}
