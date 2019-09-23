@@ -7,5 +7,5 @@ from .views import home
 
 
 urlpatterns = [
-    re_path(r'^(?P<is_amp>amp)?/?$', home, name="home"),
+    re_path(r'^(?P<is_amp>amp/)?$', home, name="home"),
 ]

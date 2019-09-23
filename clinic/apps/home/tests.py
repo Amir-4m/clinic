@@ -22,5 +22,5 @@ class HomeTestCase(TestCase):
         resp = self.client.get(reverse('home'))
         self.assertEqual(resp.status_code, 200)
 
-        resp = self.client.get(reverse('home', kwargs={'is_amp': 'amp'}))
+        resp = self.client.get(reverse('home', kwargs={'is_amp': 'amp/'}))
         self.assertEqual(resp.status_code, 200)

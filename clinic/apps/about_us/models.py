@@ -56,7 +56,7 @@ class Stuff(models.Model):
     updated = models.DateTimeField(auto_now=True, verbose_name=_('Updated'))
     title = models.CharField(max_length=50, verbose_name=_('Title'))
     description = models.CharField(max_length=255, verbose_name=_('Description'))
-    logo = ImageField(validators=[MaxSizeValidator(256)], verbose_name=_('Logo'))
+    logo = ImageField(validators=[MaxSizeValidator(1024 * 256)], verbose_name=_('Logo'))
 
     @property
     def preview(self):
@@ -75,7 +75,7 @@ class ClinicTeamMember(models.Model):
     updated = models.DateTimeField(auto_now=True, verbose_name=_('Updated'))
     name = models.CharField(max_length=120, verbose_name=_('Name'))
     degree = models.CharField(max_length=80, verbose_name=_('Degree'))
-    avatar = ImageField(validators=[MaxSizeValidator(512)], verbose_name=_('Avatar Image'))
+    avatar = ImageField(validators=[MaxSizeValidator(1024 * 512)], verbose_name=_('Avatar Image'))
 
     @property
     def preview(self):

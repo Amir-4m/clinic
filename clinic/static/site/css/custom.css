@@ -200,6 +200,7 @@ To be used in CKEditor
     margin-top: 0;
     margin-bottom: 0;
     font-size: 3.2em;
+    line-height: 1.1em;
 }
 
 body.amp amp-img[layout="fixed"] img {

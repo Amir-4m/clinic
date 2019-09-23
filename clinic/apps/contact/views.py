@@ -42,7 +42,7 @@ def show_contact(request, is_amp=False):
     else:
         context.update(
             amphtml_url='{}{}{}'.format(
-                reverse('contact', kwargs={'is_amp': 'amp'}), '?' if params else '', params
+                reverse('contact', kwargs={'is_amp': 'amp/'}), '?' if params else '', params
             )
         )
 

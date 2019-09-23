@@ -24,7 +24,7 @@ class ServicesTestCase(TestCase):
         resp = self.client.get(reverse('services'))
         self.assertEqual(resp.status_code, 200)
 
-        resp = self.client.get(reverse('services', kwargs={'is_amp': 'amp'}))
+        resp = self.client.get(reverse('services', kwargs={'is_amp': 'amp/'}))
         self.assertEqual(resp.status_code, 200)
 
     def test_article_string(self):

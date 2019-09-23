@@ -18,7 +18,7 @@ class Testimonial(models.Model):
     updated = models.DateTimeField(auto_now=True, verbose_name=_('Updated'))
     user_full_name = models.CharField(max_length=140, verbose_name=_('User Full Name'))
     user_avatar = ImageField(
-        validators=[MaxSizeValidator(512)],
+        validators=[MaxSizeValidator(1024 * 512)],
         upload_to='testimonial_avatars',
         verbose_name=_('User Avatar')
     )

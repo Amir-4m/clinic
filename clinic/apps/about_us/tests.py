@@ -24,7 +24,7 @@ class AboutUsTestCase(TestCase):
         resp = self.client.get(reverse('about'))
         self.assertEqual(resp.status_code, 200)
 
-        resp = self.client.get(reverse('about', kwargs={'is_amp': 'amp'}))
+        resp = self.client.get(reverse('about', kwargs={'is_amp': 'amp/'}))
         self.assertEqual(resp.status_code, 200)
 
     def test_about_us_history_model_to_string_value(self):

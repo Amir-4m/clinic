@@ -28,3 +28,11 @@
 .swiper-pagination-bullet {
 	cursor: pointer;
 }
+
+.hero-slider {
+    direction: ltr;
+}
+
+div.hero-content-wrap:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) {
+	direction: ltr;
+}

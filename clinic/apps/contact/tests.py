@@ -23,7 +23,7 @@ class ContactTestCase(TestCase):
         resp = self.client.get(reverse('contact'))
         self.assertEqual(resp.status_code, 200)
 
-        resp = self.client.get(reverse('contact', kwargs={'is_amp': 'amp'}))
+        resp = self.client.get(reverse('contact', kwargs={'is_amp': 'amp/'}))
         self.assertEqual(resp.status_code, 200)
 
     def test_post_contact_form_by_valid_data(self):

@@ -35,7 +35,7 @@ def show_about(request, is_amp=False):
     else:
         context.update(
             amphtml_url='{}{}{}'.format(
-                reverse('about', kwargs={'is_amp': 'amp'}), '?' if params else '', params
+                reverse('about', kwargs={'is_amp': 'amp/'}), '?' if params else '', params
             )
         )
 

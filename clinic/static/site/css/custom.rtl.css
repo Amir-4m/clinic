@@ -53,3 +53,28 @@ html, body {
 .mdl-mini-footer__link-list li {
     margin-right: 16px;
 }
+
+.testimonial-slider > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) {
+    direction: rtl;
+}
+
+.testimonial-slider .user-avatar {
+    margin-right: 0;
+    margin-left: unset;
+}
+
+.our-departments-wrap .our-departments-cont .entry-header > img {
+    margin-right: 0;
+    margin-left: 8px;
+}
+
+.site-footer ul {
+    padding-right: 0;
+    padding-left: 40px;
+}
+
+body .accordion-wrap .entry-title span.arrow-r,
+body .accordion-wrap .entry-title span.arrow-d {
+    right: unset;
+    left: 40px;
+}

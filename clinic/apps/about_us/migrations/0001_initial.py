@@ -373,7 +373,7 @@ class Migration(migrations.Migration):
             name='avatar',
             field=fancy_imagefield.fields.ImageField(
                 upload_to='',
-                validators=[fancy_imagefield.validators.MaxSizeValidator(512)],
+                validators=[fancy_imagefield.validators.MaxSizeValidator(1024 * 512)],
                 verbose_name='Avatar Image'
             ),
         ),
@@ -382,7 +382,7 @@ class Migration(migrations.Migration):
             name='image',
             field=fancy_imagefield.fields.ImageField(
                 upload_to='',
-                validators=[fancy_imagefield.validators.MaxSizeValidator(1024)],
+                validators=[fancy_imagefield.validators.MaxSizeValidator(1024 * 1024)],
                 verbose_name='Image'
             ),
         ),
@@ -396,7 +396,7 @@ class Migration(migrations.Migration):
             name='logo',
             field=fancy_imagefield.fields.ImageField(
                 upload_to='',
-                validators=[fancy_imagefield.validators.MaxSizeValidator(256)],
+                validators=[fancy_imagefield.validators.MaxSizeValidator(1024 * 256)],
                 verbose_name='Logo'
             ),
         ),

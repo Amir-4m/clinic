@@ -189,6 +189,10 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='descriptiontab',
             name='image',
-            field=fancy_imagefield.fields.ImageField(upload_to='', validators=[fancy_imagefield.validators.MaxSizeValidator(1024)], verbose_name='Image'),
+            field=fancy_imagefield.fields.ImageField(
+                upload_to='',
+                validators=[fancy_imagefield.validators.MaxSizeValidator(1024 * 1024)],
+                verbose_name='Image'
+            ),
         ),
     ]

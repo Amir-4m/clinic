@@ -35,7 +35,7 @@ class Slide(models.Model):
     details_link = models.URLField(null=True, blank=True, verbose_name=_('Details Link'))
     priority = models.IntegerField(verbose_name=_('Priority'))
     image = ImageField(
-        validators=[MaxSizeValidator(1024)], upload_to="carousels_slides", verbose_name=_('Image')
+        validators=[MaxSizeValidator(1024 * 1024)], upload_to="carousels_slides", verbose_name=_('Image')
     )
     carousel = models.ForeignKey(
         Carousel, related_name='slides', on_delete=models.CASCADE, verbose_name=_('Carousel')

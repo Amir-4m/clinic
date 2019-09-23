@@ -40,7 +40,7 @@ def home(request, is_amp=False):
     else:
         context.update(
             amphtml_url='{}{}{}'.format(
-                reverse('home', kwargs={'is_amp': 'amp'}), '?' if params else '', params
+                reverse('home', kwargs={'is_amp': 'amp/'}), '?' if params else '', params
             )
         )
 

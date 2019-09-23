@@ -33,7 +33,7 @@ def show_services(request, is_amp=False):
     else:
         context.update(
             amphtml_url='{}{}{}'.format(
-                reverse('services', kwargs={'is_amp': 'amp'}), '?' if params else '', params
+                reverse('services', kwargs={'is_amp': 'amp/'}), '?' if params else '', params
             )
         )
 

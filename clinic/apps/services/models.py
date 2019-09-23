@@ -34,7 +34,7 @@ class DescriptionTab(models.Model):
     name = models.CharField(max_length=40, verbose_name=_('Name'))  # Show as tab text
     title = models.CharField(max_length=120, verbose_name=_('Title'))
     description = RichTextField(verbose_name=_('Description'))
-    image = ImageField(validators=[MaxSizeValidator(1024)], verbose_name=_('Image'))
+    image = ImageField(validators=[MaxSizeValidator(1024 * 1024)], verbose_name=_('Image'))
 
     @property
     def preview(self):

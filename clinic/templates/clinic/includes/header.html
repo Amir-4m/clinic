@@ -9,7 +9,7 @@
 						<a class="d-block" href="index.html" rel="home">
 							{% if is_amp %}
 							<amp-img class="header-logo" layout="responsive" width="135" height="45" src="{{ MEDIA_URL }}{{ config.LOGO  }}" alt="logo"></amp-img>
-							{%  else%}
+							{% else %}
 							<img class="header-logo" src="{{ MEDIA_URL }}{{ config.LOGO  }}" alt="logo">
 							{% endif %}
 						</a>
@@ -18,11 +18,11 @@
 						<ul id="header-menu" [class]="visibleMenus? 'present' : 'd-flex'" class="d-flex">
 							<li class="mdl-layout-spacer"></li>
 
-							<li class="current-menu-item"><a href="{% url 'home' is_amp=amp %}">{% trans "Home" %}</a></li>
-							<li><a href="{% url 'about' is_amp=amp %}">{% trans "About us" %}</a></li>
-							<li><a href="{% url 'services' is_amp=amp %}">{% trans "Services" %}</a></li>
+							<li class="current-menu-item"><a href="{% if is_amp %}{% url 'home' is_amp='amp/' %}{% else %}{% url 'home' %}{% endif %}">{% trans "Home" %}</a></li>
+							<li><a href="{% if is_amp %}{% url 'about' is_amp='amp/' %}{% else %}{% url 'about' %}{% endif %}">{% trans "About us" %}</a></li>
+							<li><a href="{% if is_amp %}{% url 'services' is_amp='amp/' %}{% else %}{% url 'services' %}{% endif %}">{% trans "Services" %}</a></li>
 							<li><a href="">{% trans "News" %}</a></li>
-							<li><a href="{% url 'contact' is_amp=amp %}">{% trans "Contact" %}</a></li>
+							<li><a href="{% if is_amp %}{% url 'contact' is_amp='amp/' %}{% else %}{% url 'contact' %}{% endif %}">{% trans "Contact" %}</a></li>
 							<li class="iconic-item">
 								<div class="call-btn mdl-button mdl-button--accent mdl-cell mdl-cell--middle button gradient-bg mt-3 mt-md-0">
 									<a class="d-flex" href="#">
@@ -58,7 +58,7 @@
 					<h1>{{ page }}</h1>
 					<div class="breadcrumbs">
 						<ul class="d-flex">
-							<li><a href="{% url 'home' is_amp=amp %}">Home</a></li>
+							<li><a href="{% if is_amp %}{% url 'home' is_amp='amp/' %}{% else %}{% url 'home' %}{% endif %}">Home</a></li>
 							<li>{{ page }}</li>
 						</ul>
 					</div>
