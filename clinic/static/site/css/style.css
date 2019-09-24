@@ -218,20 +218,7 @@ p {
 }
 
 @media screen and (min-width:840px) {
-    .site-navigation ul {
-        position: relative;
-        top: auto;
-        left: auto;
-        width: 100%;
-        max-width: 100%;
-        height: auto;
-        padding: 0;
-        overflow: auto;
-        background: 0 0
-    }
-    .site-navigation ul li a {
-        padding: 30px 0
-    }
+    
 }
 
 .site-navigation ul li a:hover,
@@ -1145,6 +1132,10 @@ body.amp .site-header .header-img {
 
 .contact-page-map {
     margin-bottom: 100px
+}
+
+body.amp .contact-page-map {
+    margin-bottom: 0px
 }
 
 .contact-page-map iframe {

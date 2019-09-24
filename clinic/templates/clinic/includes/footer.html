@@ -8,7 +8,11 @@
 					<div class="foot-about">
 						<h2>
 							<a href="#">
+								{% if is_amp %}
 								<amp-img src="{{ MEDIA_URL }}{{ config.LOGO  }}" width="135" height="45" layout="fixed" alt=""></amp-img>
+								{% else %}
+								<img src="{{ MEDIA_URL }}{{ config.LOGO  }}" layout="fixed" alt=""></img>
+								{% endif %}
 							</a>
 						</h2>
 						{{ config.COPYRIGHT|safe }}

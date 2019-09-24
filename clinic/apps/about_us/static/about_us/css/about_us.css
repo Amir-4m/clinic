@@ -31,8 +31,8 @@
 .accordion-wrap .entry-title .arrow-r,
 .accordion-wrap .entry-title .arrow-d {
     position: absolute;
-    right: 40px;
-    margin-top: -5px;
+    right: 20px;
+    margin-top: -8px;
 }
 
 .accordion-wrap .entry-title .arrow-r::before,
@@ -108,7 +108,12 @@
 
 @media screen and (max-width:768px) {
     .stuff-box:nth-last-child(-n+1) {
-        margin-left: 32px;
+        margin-left: 0px;
+        margin-top: 40px;
+    }
+
+    .faq-stuff > .container > .mdl-grid {
+        margin-left: 20px;
     }
 }
 

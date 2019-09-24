@@ -76,5 +76,5 @@ html, body {
 body .accordion-wrap .entry-title span.arrow-r,
 body .accordion-wrap .entry-title span.arrow-d {
     right: unset;
-    left: 40px;
+    left: 20px;
 }
