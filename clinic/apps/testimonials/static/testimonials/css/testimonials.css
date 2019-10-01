@@ -73,7 +73,6 @@
 }
 
 .testimonial-slider .testimonial-user {
-    display: inline-block;
     margin-top: 24px;
     font-size: 16px;
     font-weight: 500;
@@ -82,11 +81,30 @@
 }
 
 .testimonial-slider .testimonial-user span {
-    display: block;
     margin-top: 8px;
     font-size: 12px;
     font-weight: 500;
     color: #828282
+}
+
+@media screen and (min-width: 481px) {
+    .testimonial-slider .testimonial-user {
+        display: inline-block;
+    }
+
+    .testimonial-slider .testimonial-user span {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .testimonial-slider .testimonial-user {
+        display: block;
+    }
+
+    .testimonial-slider .testimonial-user span {
+        display: contents;
+    }
 }
 
 .testimonial-slider .user-avatar {

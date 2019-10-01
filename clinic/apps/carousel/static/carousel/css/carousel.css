@@ -36,3 +36,7 @@
 div.hero-content-wrap:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) {
 	direction: ltr;
 }
+
+.slide-bg-0.amp-carousel-slide {
+	padding-top: 124px;
+}
