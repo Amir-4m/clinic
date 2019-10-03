@@ -847,6 +847,7 @@ body.amp .site-header .header-img {
     max-width: 100%;
     z-index: 1;
     /*height: 100%;*/
+    /*z-index: -1;*/
 }
 
 body.amp .site-header .header-img img {
@@ -859,9 +860,8 @@ body.amp .site-header .header-img img {
     position: absolute;
     top: 0;
     right: 0;
-    max-width: 65%;
+    max-width: 100%;
     height: auto;
-    z-index: -1;
 }
 
 .breadcrumbs {

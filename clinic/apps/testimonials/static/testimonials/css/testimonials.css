@@ -49,6 +49,13 @@
     background: url(../images/testimonial-content-bg.png) no-repeat
 }
 
+@media screen and (max-width: 500px) {
+    .testimonial-bg-shape::before {
+        width: 100%;
+    }
+}
+
+
 .testimonial-slider .content-wrap {
     background: #fff
 }
@@ -151,6 +158,12 @@
 
     .swiper-pagination-wrap {
         bottom: 230px
+    }
+}
+
+@media screen and (max-width:520px) {
+    .swiper-pagination-wrap {
+        bottom: 60px
     }
 }
 
